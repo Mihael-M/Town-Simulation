@@ -15,7 +15,7 @@ public:
     void add_building(int x, int y,Building* building);
     
     
-    // TODO::
+    // TODO:: and make functionality for saving in files...
     
     void simulate_day();
     
