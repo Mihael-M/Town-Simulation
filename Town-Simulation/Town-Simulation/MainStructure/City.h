@@ -12,7 +12,10 @@ public:
     
     //functionality:
     
-    void add_building(int x, int y,const Building* building);
+    void add_building(int x, int y,Building* building);
+    
+    
+    // TODO::
     
     void simulate_day();
     
@@ -20,12 +23,19 @@ public:
     
     void print_status();
     
+    Building* get_building_at(int x, int y);
+    
+    int get_width() const;
+    
+    int get_height() const;
+    
     //memory management:
     
     ~City();
     
     
 private:
+    // maybe big four...?
     
     void freeDynamic();
     bool is_central(int x, int y) const;

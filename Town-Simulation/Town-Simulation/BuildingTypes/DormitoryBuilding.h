@@ -1,11 +1,12 @@
-#ifndef ModernBuilding_h
-#define ModernBuilding_h
+#ifndef DormitoryBuilding_h
+#define DormitoryBuilding_h
 #include "Building.h"
-class ModernBuilding : public Building{
+
+class DormitoryBuilding : public Building{
 public:
     // constructors:
     
-    ModernBuilding(int capacity);
+    DormitoryBuilding(int capacity);
     
     // functionality:
     
@@ -15,4 +16,4 @@ public:
     
 };
 
-#endif /* ModernBuilding_h */
+#endif /* DormitoryBuilding_h */

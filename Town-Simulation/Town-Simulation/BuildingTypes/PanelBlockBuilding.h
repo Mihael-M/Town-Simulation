@@ -1,11 +1,11 @@
-#ifndef ModernBuilding_h
-#define ModernBuilding_h
+#ifndef PanelBlockBuilding_h
+#define PanelBlockBuilding_h
 #include "Building.h"
-class ModernBuilding : public Building{
+class PanelBlockBuilding : public Building{
 public:
     // constructors:
     
-    ModernBuilding(int capacity);
+    PanelBlockBuilding(int capacity);
     
     // functionality:
     
@@ -15,4 +15,4 @@ public:
     
 };
 
-#endif /* ModernBuilding_h */
+#endif /* PanelBlockBuilding_h */
