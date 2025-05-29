@@ -11,7 +11,7 @@ public:
     
     virtual void monthly_update(Resident* resident) = 0;
     
-    virtual std::string& get_name() const = 0;
+    virtual std::string get_name() const = 0;
     
     virtual ~Profession() {}
 };

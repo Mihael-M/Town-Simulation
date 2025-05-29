@@ -3,7 +3,6 @@
 
 #include "Profession.h"
 #include <vector>
-#include <string>
 
 struct ResidentSnapshot
 {
@@ -21,8 +20,9 @@ public:
     Resident(const std::string& name, Profession* job, int happiness, int money, int lifePoints);
     
     //functionality:
-
-    void live_day(bool isFirstDayOfMonth);
+    void set_happiness(int happiness);
+    
+    void set_life_points(int lifePoints);
     
     void receive_salary();
     
@@ -50,10 +50,15 @@ private:
     void pay_rent(double amount);
     
     std::string name;
+    
     Profession* profession;
+    
     int happiness;
+    
     double money;
+    
     int lifePoints;
+    
     std::vector<ResidentSnapshot> history;
 };
 

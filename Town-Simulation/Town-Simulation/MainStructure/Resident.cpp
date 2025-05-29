@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "Resident.h"
 #include <iostream>
+#include <stdexcept>
 void Resident::freeDynamic(){
     delete profession;
 }
@@ -64,3 +65,18 @@ void Resident::print_info() const
     std::cout << "Profession: " << profession->get_name() << "\n";
     std::cout << "Happiness: " << happiness << ", Money: " << money << ", Life: " << lifePoints << "\n";
 }
+
+void Resident::set_happiness(int happiness)
+{
+    if(happiness < 0)
+        throw std::invalid_argument("Invalid happiness!");
+    this->happiness = happiness;
+}
+
+void Resident::set_life_points(int lifePoints)
+{
+    if(lifePoints < 0)
+        throw std::invalid_argument("Invalid life points!");
+    this->lifePoints = lifePoints;
+}
+
