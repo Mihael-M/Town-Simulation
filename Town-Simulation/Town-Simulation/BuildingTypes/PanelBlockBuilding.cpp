@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "PanelBlockBuilding.h"
+#include "BuildingType.h"
 
-PanelBlockBuilding::PanelBlockBuilding(int capacity) : Building("PanelBlock", capacity)  {}
+PanelBlockBuilding::PanelBlockBuilding(int capacity) : Building(BuildingType::PanelBlock, capacity)  {}
 
 double PanelBlockBuilding::calculate_rent() const {
     double rent = get_base_rent();

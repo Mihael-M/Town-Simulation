@@ -1,14 +1,17 @@
 #ifndef Building_h
 #define Building_h
 #include "Resident.h"
+#include "BuildingType.h"
 #include <string>
 #include <vector>
+
+
 
 class Building{
 public:
     //constructors:
 
-    Building(const std::string& type, int capacity);
+    Building(const BuildingType type, int capacity);
     
     //functionality:
 
@@ -35,7 +38,7 @@ protected:
     
     int capacity;
     
-    std::string type;
+    BuildingType type;
     
     bool isCentral;
     

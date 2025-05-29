@@ -1,6 +1,7 @@
 #ifndef ModernBuilding_h
 #define ModernBuilding_h
 #include "Building.h"
+
 class ModernBuilding : public Building{
 public:
     // constructors:

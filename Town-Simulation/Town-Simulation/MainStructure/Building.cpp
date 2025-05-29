@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "Building.h"
 
-Building::Building(const std::string& type, int capacity): type(type), capacity(capacity),isCentral(false),isPeripheral(false){}
+Building::Building(const BuildingType type, int capacity): type(type), capacity(capacity),isCentral(false),isPeripheral(false){}
 
 void Building::add_resident(Resident *resident)
 {

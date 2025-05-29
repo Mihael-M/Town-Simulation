@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "DormitoryBuilding.h"
+#include "BuildingType.h"
 
-DormitoryBuilding::DormitoryBuilding(int capacity) : Building("Dormitory", capacity)  {}
+DormitoryBuilding::DormitoryBuilding(int capacity) : Building(BuildingType::Dormitory, capacity)  {}
 
 double DormitoryBuilding::calculate_rent() const {
     

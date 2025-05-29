@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "ModernBuilding.h"
+#include "BuildingType.h"
 
-ModernBuilding::ModernBuilding(int capacity) : Building("Modern", capacity)  {}
+ModernBuilding::ModernBuilding(int capacity) : Building(BuildingType::Modern, capacity)  {}
 
 double ModernBuilding::calculate_rent() const {
     double rent = 1000.0;
