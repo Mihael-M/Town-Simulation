@@ -1,20 +1,22 @@
 #ifndef BuildingFactory_h
 #define BuildingFactory_h
-#include "BuildingType.h"
-#include "BuildingCreator.h"
+#include "DormitoryBuildingCreator.h"
+#include "ModernBuildingCreator.h"
+#include "PanelBlockBuildingCreator.h"
+
 
 class BuildingFactory{
 public:
-    // Тя ще е сингълтон.
+    // Singleton
     static BuildingFactory& get_factory();
     
     void register_building(const BuildingCreator* creator);
 
-    // Метод фабрика
+    // Factory method
     Building* create_building(BuildingType type, int capacity);
 
 private:
-    // Метод за търсене на подходяща фабрика
+    // Search method
     const BuildingCreator* get_creator(BuildingType type) const;
 
 private:

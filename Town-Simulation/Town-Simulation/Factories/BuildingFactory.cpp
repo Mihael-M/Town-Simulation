@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "BuildingFactory.h"
+#include <iostream>
 
 BuildingFactory& BuildingFactory::get_factory()
 {
@@ -11,12 +12,15 @@ void BuildingFactory::register_building(const BuildingCreator* creator)
 {
     if(count < MaxNumberTypes)
         creators[count++] = creator;
+    
+    std::cout<<"type"<<std::endl;
 }
 
 Building* BuildingFactory::create_building(BuildingType type, int capacity)
 {
 
     const BuildingCreator* creator = get_creator(type);
+    
     if (creator) {
         return creator->create_building(capacity);
     }

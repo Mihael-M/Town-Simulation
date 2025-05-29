@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cmath>
-
+#include "BuildingRegistrations.h"
 
 City::City(int width, int height) : width(width),height(height),currentDay(1)
 {

@@ -1,6 +1,7 @@
 #ifndef BuildingCreator_h
 #define BuildingCreator_h
 #include "Building.h"
+
 class BuildingCreator{
 public:
     BuildingCreator(const BuildingType type);
