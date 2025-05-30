@@ -3,13 +3,13 @@
 
 BuildingFactory& BuildingFactory::get_factory()
 {
-    static BuildingFactory theFactory;
+    static BuildingFactory theBuildingFactory;
     return theFactory;
 }
 
 void BuildingFactory::register_building(const BuildingCreator* creator)
 {
-    if(count < MaxNumberTypes)
+    if(count < Constants::MAX_NUMBER_TYPES)
         creators[count++] = creator;
 }
 

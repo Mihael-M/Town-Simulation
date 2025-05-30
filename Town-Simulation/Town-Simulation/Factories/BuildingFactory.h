@@ -3,7 +3,7 @@
 #include "DormitoryBuildingCreator.h"
 #include "ModernBuildingCreator.h"
 #include "PanelBlockBuildingCreator.h"
-
+#include "Constants.hpp"
 
 class BuildingFactory{
 public:
@@ -20,18 +20,17 @@ private:
     const BuildingCreator* get_creator(BuildingType type) const;
 
 private:
-    BuildingFactory() : count(0) {};
+    BuildingFactory() : count(0) {}
     
     ~BuildingFactory() = default;
     
-    BuildingFactory(const BuildingFactory&) = delete;
+    BuildingFactory(const BuildingFactory& other) = delete;
     
-    BuildingFactory& operator=(const BuildingFactory&) = delete;
+    BuildingFactory& operator=(const BuildingFactory& other) = delete;
 
 private:
-    static const int MaxNumberTypes = 10;
 
-    const BuildingCreator* creators[MaxNumberTypes];
+    const BuildingCreator* creators[Constants::MAX_NUMBER_TYPES];
     int count;
     
     

@@ -7,14 +7,15 @@ namespace MinerSalary{
     constexpr int MIN_SALARY = 1000;
 };
 
-class Miner : Profession{
+class Miner : public Profession{
 public:
+    Miner(std::string& type);
     
     int get_salary() const override;
     
     void monthly_update(Resident* resident) override;
     
-    std::string get_name() const override;
+    const std::string& get_name() const override;
     
 };
 

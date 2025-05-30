@@ -9,12 +9,13 @@ namespace ProgrammerSalary{
 
 class Programmer : public Profession{
 public:
+    Programmer(std::string& type);
     
     int get_salary() const override;
     
     void monthly_update(Resident* resident) override;
     
-    std::string get_name() const override;
+    const std::string& get_name() const override;
     
 };
 

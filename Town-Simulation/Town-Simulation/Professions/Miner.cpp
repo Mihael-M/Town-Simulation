@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <cmath>
 
+Miner::Miner(std::string& type) : Profession(type) {}
+
 int Miner::get_salary() const
 {
     return MinerSalary::MIN_SALARY + (std::rand() + (MinerSalary::MAX_SALARY - MinerSalary::MIN_SALARY - 1));
@@ -15,7 +17,7 @@ void Miner::monthly_update(Resident* resident)
     resident->set_life_points(std::max(0, life - 1));
 }
 
-std::string Miner::get_name() const
+const std::string& Miner::get_name() const
 {
-    return "Miner";
+    return name;
 }

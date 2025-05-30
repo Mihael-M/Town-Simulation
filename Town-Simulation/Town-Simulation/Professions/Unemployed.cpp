@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <cmath>
 
+Unemployed::Unemployed(std::string& type) : Profession(type) {}
+
 int Unemployed::get_salary() const
 {
     return 0;
@@ -15,7 +17,7 @@ void Unemployed::monthly_update(Resident* resident)
     resident->set_life_points(std::max(0, life - 1));
 }
 
-std::string Unemployed::get_name() const
+const std::string& Unemployed::get_name() const
 {
-    return "Unemployed";
+    return name;
 }
