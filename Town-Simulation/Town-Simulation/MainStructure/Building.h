@@ -14,6 +14,8 @@ public:
     Building(const BuildingType type, int capacity);
     
     //functionality:
+    
+    std::vector<Resident*> get_residents() const;
 
     virtual void add_resident(Resident* resident);
     
@@ -26,6 +28,8 @@ public:
     virtual Building* clone() const = 0;
     
     void setLocation(bool central, bool peripheral);
+    
+    void print_type() const;
 
     //memory management:
     
