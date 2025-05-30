@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include "Programmer.h"
+#include "Resident.h"
+#include <cstdlib>
+#include <cmath>
+
+Programmer::Programmer(std::string& type) : Profession(type) {}
+
+int Programmer::get_salary() const{
+    return Constants::PROGRAMMER_MIN_SALARY + (std::rand() + (Constants::PROGRAMMER_MAX_SALARY - Constants::PROGRAMMER_MIN_SALARY + 1));
+}
+
+void Programmer::monthly_update(Resident* resident){
+    auto resident_info = resident->get_resident_info();
+    resident_info.set_happiness(std::max(resident_info.happiness - 1, 0));
+}
+
+Profession* Programmer::clone() const{
+    return new Programmer(*this);
+}
