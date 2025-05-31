@@ -64,7 +64,7 @@ void City::simulate_day() {
                 auto residents = building->get_residents();
                 residents.erase(std::remove_if(residents.begin(), residents.end(),
                     [](const Resident* r) {
-                        return r->get_money() <= 0 || r->get_happiness() <= 0 || r->get_life_points() <= 0;
+                        return r->get_resident_info().get_money() <= 0 || r->get_resident_info().get_happiness() <= 0 || r->get_resident_info().get_life_points() <= 0;
                     }), residents.end());
             }
         }
@@ -95,8 +95,8 @@ void City::print_status() {
         for (int j = 0; j < width; j++) {
             Building* building = grid[i][j];
             if (building != nullptr) {
-                std::cout << "Building type: ";
-                building->print_type();
+//                std::cout << "Building type: ";
+//                building->print_type();
                 std::cout<< "\n";
                 std::cout << "Residents: ";
                 auto residents = building->get_residents();

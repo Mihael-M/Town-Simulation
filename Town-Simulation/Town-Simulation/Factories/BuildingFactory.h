@@ -7,16 +7,13 @@
 
 class BuildingFactory{
 public:
-    // Singleton
     static BuildingFactory& get_factory();
     
     void register_building(const BuildingCreator* creator);
 
-    // Factory method
-    Building* create_building(BuildingType type, int capacity);
+    Building* create_building(BuildingType type, Location* loc, int capacity);
 
 private:
-    // Search method
     const BuildingCreator* get_creator(BuildingType type) const;
 
 private:

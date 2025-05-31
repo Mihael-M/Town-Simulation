@@ -4,7 +4,7 @@
 
 class Programmer : public Profession{
 public:
-    Programmer(std::string& type);
+    Programmer(const std::string& type);
     
     virtual int get_salary() const override;
     virtual void monthly_update(Resident* resident) override;

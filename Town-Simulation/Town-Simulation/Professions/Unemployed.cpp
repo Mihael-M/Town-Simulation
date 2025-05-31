@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <cmath>
 
-Unemployed::Unemployed(std::string& type) : Profession(type) {}
+Unemployed::Unemployed(const std::string& type) : Profession(type) {}
 
 int Unemployed::get_salary() const{
     return Constants::UNEMPLOYED_SALARY;
@@ -12,7 +12,7 @@ int Unemployed::get_salary() const{
 
 void Unemployed::monthly_update(Resident* resident){
     auto resident_info = resident->get_resident_info();
-    resident_info.set_life_points(std::max(0, resident_info.life_points - 1));
+    resident_info.set_life_points(std::max(0, resident_info.get_life_points() - 1));
 }
 
 Profession* Unemployed::clone() const{

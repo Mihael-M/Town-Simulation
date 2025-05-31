@@ -2,7 +2,7 @@
 #include "PanelBlockBuilding.h"
 #include "BuildingType.h"
 
-PanelBlockBuilding::PanelBlockBuilding(location* loc,size_t capacity) : Building(BuildingType::PanelBlock,loc, capacity)  {}
+PanelBlockBuilding::PanelBlockBuilding(Location* loc,size_t capacity) : Building(BuildingType::PanelBlock,loc, capacity)  {}
 
 double PanelBlockBuilding::calculate_rent() const {
     auto base_rent = get_base_rent();

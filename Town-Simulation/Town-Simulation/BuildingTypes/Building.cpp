@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include "Building.h"
+#include <stdexcept>
 #include <iostream>
 
-Building::Building(const BuildingType type, location* loc, size_t capacity) : type(type), capacity(capacity), residents(capacity), size(0){
+Building::Building(const BuildingType type, Location* loc, size_t capacity) : type(type), capacity(capacity), residents(capacity), size(0){
     this->loc = loc->clone();
 }
 
 void Building::add_resident(Resident *resident){
     if (is_full())
-        throw "full";
+        throw std::overflow_error("The building can not hold any more residents!");
     
     residents[size++] = resident;
 }

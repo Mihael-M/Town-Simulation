@@ -3,7 +3,7 @@
 #include "Resident.h"
 #include "Constants.hpp"
 #include "BuildingType.h"
-#include "location.h"
+#include "Location.h"
 #include <string>
 #include <vector>
 
@@ -11,7 +11,7 @@ class Resident;
 
 class Building{
 public:
-    Building(BuildingType type, location* loc, size_t capacity = Constants::DEFAULT_INITIAL_RESIDENTS);
+    Building(BuildingType type, Location* loc, size_t capacity = Constants::DEFAULT_INITIAL_RESIDENTS);
         
     std::vector<Resident*> get_residents() const;
 
@@ -39,7 +39,7 @@ protected:
     size_t capacity = 0;
     
     BuildingType type;
-    location* loc;
+    Location* loc;
     
 private:
     void freeDynamic();

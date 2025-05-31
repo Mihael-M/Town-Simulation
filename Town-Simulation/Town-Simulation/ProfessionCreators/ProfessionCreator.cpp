@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "ProfessionCreator.h"
 
-ProfessionCreator::ProfessionCreator(std::string type) : type(type) {}
+ProfessionCreator::ProfessionCreator(const std::string& type) : type(type) {}
 
 std::string ProfessionCreator::get_profession_type() const
 {

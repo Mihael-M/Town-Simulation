@@ -2,7 +2,6 @@
 #define Resident_h
 #include "Profession.h"
 #include "Building.h"
-#include "Constants.hpp"
 #include <vector>
 
 class Profession;
@@ -36,8 +35,18 @@ public:
     void set_money(double money){
         this->money = money;
     }
-    
-    // write getters
+
+    int get_happiness() const {
+        return happiness;
+    }
+
+    double get_money() const {
+        return money;
+    }
+
+    int get_life_points() const {
+        return life_points;
+    }
 };
 
 struct resident_snapshot{
@@ -59,6 +68,8 @@ public:
     void live_day(bool isFirstDayOfMonth, int currentDay);
     
     void record_snapshot(int currentDay);
+    
+    void set_building(Building* building);
     
     resident_info get_resident_info() const;
     

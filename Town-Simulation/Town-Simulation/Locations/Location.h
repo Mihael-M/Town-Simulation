@@ -1,9 +1,9 @@
 #pragma once
 #include "Constants.hpp"
 
-class location{
+class Location{
 public:
-    virtual ~location() = default;
+    virtual ~Location() = default;
     virtual double rent_multiplier() const = 0;
-    virtual location* clone() const = 0;
+    virtual Location* clone() const = 0;
 };

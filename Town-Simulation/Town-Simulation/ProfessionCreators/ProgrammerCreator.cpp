@@ -4,7 +4,7 @@
 
 ProgrammerCreator::ProgrammerCreator() : ProfessionCreator("Programmer") {}
 
-Profession* ProgrammerCreator::create_profession(std::string type) const
+Profession* ProgrammerCreator::create_profession(const std::string& type) const
 {
     return new Programmer(type);
 }

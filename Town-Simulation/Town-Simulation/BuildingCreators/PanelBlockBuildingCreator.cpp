@@ -4,7 +4,7 @@
 
 PanelBlockBuildingCreator::PanelBlockBuildingCreator() : BuildingCreator(BuildingType::PanelBlock) {}
 
-Building* PanelBlockBuildingCreator::create_building(int capacity) const
+Building* PanelBlockBuildingCreator::create_building(Location* loc, int capacity) const
 {
-    return new PanelBlockBuilding(capacity);
+    return new PanelBlockBuilding(loc, capacity);
 }

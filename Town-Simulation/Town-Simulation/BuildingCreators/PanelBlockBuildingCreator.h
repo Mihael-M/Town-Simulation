@@ -6,7 +6,7 @@ class PanelBlockBuildingCreator : public BuildingCreator{
 public:
     PanelBlockBuildingCreator();
     
-    Building* create_building(int capacity) const override;
+    Building* create_building(Location* loc, int capacity) const override;
     
     
 };
