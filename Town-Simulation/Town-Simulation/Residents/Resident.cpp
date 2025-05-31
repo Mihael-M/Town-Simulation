@@ -7,11 +7,12 @@
 
 void Resident::freeDynamic(){
     delete profession;
-    delete building;
 }
 
 Resident::~Resident(){
     freeDynamic();
+    profession = nullptr;
+    building = nullptr;
 }
 
 void Resident::set_building(Building* building)

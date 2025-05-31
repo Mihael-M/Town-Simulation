@@ -8,7 +8,7 @@
 namespace {
     struct AutoRegisterDormitory {
         AutoRegisterDormitory() {
-            BuildingFactory::get_factory().register_building(new DormitoryBuildingCreator());
+            BuildingFactory::get_factory()->register_building(new DormitoryBuildingCreator());
         }
     };
     static AutoRegisterDormitory dormitoryReg;

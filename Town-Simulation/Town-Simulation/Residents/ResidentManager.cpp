@@ -22,5 +22,6 @@ void ResidentManager::removeResident(City& city, int x, int y, const std::string
     Building* building = city.get_building_at(x, y);
     if (building) {
         building->remove_resident(name);
+        
     }
 }

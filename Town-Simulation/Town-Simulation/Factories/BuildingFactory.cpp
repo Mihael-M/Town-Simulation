@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include "BuildingFactory.h"
 
-BuildingFactory& BuildingFactory::get_factory()
+
+BuildingFactory* BuildingFactory::theBuildingFactory = nullptr;
+
+BuildingFactory* BuildingFactory::get_factory()
 {
-    static BuildingFactory theBuildingFactory;
+    if(theBuildingFactory == nullptr)
+        theBuildingFactory =  new BuildingFactory();
     return theBuildingFactory;
 }
 

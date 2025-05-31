@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include "ProfessionFactory.h"
+#include <stdexcept>
 
+ProfessionFactory* ProfessionFactory::theProfessionFactory = nullptr;
 
-ProfessionFactory& ProfessionFactory::get_factory()
+ProfessionFactory* ProfessionFactory::get_factory()
 {
-    static ProfessionFactory theProfessionFactory;
+    if(theProfessionFactory == nullptr)
+        theProfessionFactory = new ProfessionFactory();
     return theProfessionFactory;
 }
 
 void ProfessionFactory::register_profession(const ProfessionCreator* creator)
 {
-    if(count < Constants::MAX_NUMBER_TYPES)
-        creators[count++] = creator;
+    if(count == Constants::MAX_NUMBER_TYPES)
+        throw std::out_of_range("No more space for creators!");
+    creators[count++] = creator;
 }
 
 Profession* ProfessionFactory::create_profession(std::string& type)

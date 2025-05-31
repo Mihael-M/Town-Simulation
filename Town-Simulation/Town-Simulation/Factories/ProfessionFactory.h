@@ -1,15 +1,15 @@
 #ifndef ProfessionFactory_h
 #define ProfessionFactory_h
 #include "Constants.hpp"
-#include "MinerCreator.h"
 #include "ProgrammerCreator.h"
 #include "UnemployedCreator.h"
 #include "MinerCreator.h"
+#include "TeacherCreator.h"
 
 class ProfessionFactory {
 public:
     
-    static ProfessionFactory& get_factory();
+    static ProfessionFactory* get_factory();
     
     void register_profession(const ProfessionCreator* creator);
     
@@ -30,7 +30,7 @@ private:
     ProfessionFactory& operator=(const ProfessionFactory& other) = delete;
     
 private:
-    
+    static ProfessionFactory* theProfessionFactory;
     const ProfessionCreator* creators[Constants::MAX_NUMBER_TYPES];
     int count;
     

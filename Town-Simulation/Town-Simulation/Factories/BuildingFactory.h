@@ -7,7 +7,7 @@
 
 class BuildingFactory{
 public:
-    static BuildingFactory& get_factory();
+    static BuildingFactory* get_factory();
     
     void register_building(const BuildingCreator* creator);
 
@@ -26,7 +26,7 @@ private:
     BuildingFactory& operator=(const BuildingFactory& other) = delete;
 
 private:
-
+    static BuildingFactory* theBuildingFactory;
     const BuildingCreator* creators[Constants::MAX_NUMBER_TYPES];
     int count;
     

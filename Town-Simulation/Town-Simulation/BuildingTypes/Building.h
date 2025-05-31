@@ -35,8 +35,6 @@ public:
 protected:
     std::vector<Resident*> residents;
     
-    size_t size = 0;
-    size_t capacity = 0;
     
     BuildingType type;
     Location* loc;

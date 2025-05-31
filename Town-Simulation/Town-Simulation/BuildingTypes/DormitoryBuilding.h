@@ -11,9 +11,9 @@ public:
     
     DormitoryBuilding(Location* loc,size_t capacity);
     
-    double calculate_rent() const override;
-    double get_base_rent() const override;
-    Building* clone() const override;
+    virtual double calculate_rent() const override;
+    virtual double get_base_rent() const override;
+    virtual Building* clone() const override;
     
 };
 

@@ -84,6 +84,7 @@ private:
     std::string name;
     
     Profession* profession;
+    
     Building* building;
     
     resident_info info;

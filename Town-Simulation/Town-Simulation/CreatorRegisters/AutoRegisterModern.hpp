@@ -7,7 +7,7 @@
 namespace {
     struct AutoRegisterModern {
         AutoRegisterModern() {
-            BuildingFactory::get_factory().register_building(new ModernBuildingCreator());
+            BuildingFactory::get_factory()->register_building(new ModernBuildingCreator());
         }
     };
     static AutoRegisterModern modernReg;
