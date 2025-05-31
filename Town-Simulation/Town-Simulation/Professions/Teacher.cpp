@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <cmath>
 
-Teacher::Teacher(std::string& type) : Profession(type) {}
+Teacher::Teacher(const std::string& type) : Profession(type) {}
 
 int Teacher::get_salary() const{
     return Constants::TEACHER_MIN_SALARY + (std::rand() + (Constants::TEACHER_MAX_SALARY - Constants::TEACHER_MIN_SALARY + 1));

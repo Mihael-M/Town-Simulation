@@ -4,7 +4,7 @@
 
 UnemployedCreator::UnemployedCreator() : ProfessionCreator("Unemployed") {}
 
-Profession* UnemployedCreator::create_profession(std::string& type) const
+Profession* UnemployedCreator::create_profession(const std::string& type) const
 {
     return new Unemployed(type);
 }

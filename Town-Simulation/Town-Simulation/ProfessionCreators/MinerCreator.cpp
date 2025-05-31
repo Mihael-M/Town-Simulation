@@ -4,7 +4,7 @@
 
 MinerCreator::MinerCreator() : ProfessionCreator("Miner") {}
 
-Profession* MinerCreator::create_profession(std::string type) const
+Profession* MinerCreator::create_profession(const std::string& type) const
 {
     return new Miner(type);
 }

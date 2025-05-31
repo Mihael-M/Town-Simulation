@@ -4,7 +4,7 @@
 BuildingFactory& BuildingFactory::get_factory()
 {
     static BuildingFactory theBuildingFactory;
-    return theFactory;
+    return theBuildingFactory;
 }
 
 void BuildingFactory::register_building(const BuildingCreator* creator)

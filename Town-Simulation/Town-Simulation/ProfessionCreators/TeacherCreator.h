@@ -6,7 +6,7 @@ class TeacherCreator : public ProfessionCreator{
 public:
     TeacherCreator();
     
-    Profession* create_profession(std::string type) const override;
+    Profession* create_profession(const std::string& type) const override;
     
 };
 

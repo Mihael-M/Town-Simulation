@@ -29,7 +29,6 @@ void City:: add_building(int x, int y,Building *building)
     {
         throw std::invalid_argument("Wrong building information, can't be added!");
     }
-    building->setLocation(is_central(x, y), is_peripheral(x, y));
     grid[x][y] = building;
 }
 

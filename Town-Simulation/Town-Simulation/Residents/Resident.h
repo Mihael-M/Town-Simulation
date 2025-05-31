@@ -9,7 +9,7 @@ class Profession;
 class Building;
 
 struct resident_info{
-public:
+private:
     int happiness;
     double money;
     int life_points;
@@ -36,6 +36,8 @@ public:
     void set_money(double money){
         this->money = money;
     }
+    
+    // write getters
 };
 
 struct resident_snapshot{

@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <cmath>
 
-Miner::Miner(std::string& type) : Profession(type) {}
+Miner::Miner(const std::string& type) : Profession(type) {}
 
 int Miner::get_salary() const{
     return Constants::MINER_MIN_SALARY + (std::rand() + (Constants::MINER_MAX_SALARY - Constants::MINER_MIN_SALARY - 1));

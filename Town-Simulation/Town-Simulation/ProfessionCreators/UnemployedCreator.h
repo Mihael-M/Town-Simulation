@@ -7,7 +7,7 @@ public:
     
     UnemployedCreator();
     
-    Profession* create_profession(std::string& type) const override;
+    Profession* create_profession(const std::string& type) const override;
     
 };
 

@@ -5,13 +5,13 @@
 class ProfessionCreator{
 public:
     
-    ProfessionCreator(std::string type);
+    ProfessionCreator(const std::string& type);
     
     std::string get_profession_type() const;
     
     virtual bool exists(std::string& type) const;
 
-    virtual Profession* create_profession(std::string type) const = 0;
+    virtual Profession* create_profession(const std::string& type) const = 0;
     
     virtual ~ProfessionCreator() = default;
     
