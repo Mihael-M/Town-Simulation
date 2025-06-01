@@ -2,7 +2,7 @@
 #include "ModernBuilding.h"
 #include "BuildingType.h"
 
-ModernBuilding::ModernBuilding(Location* loc, size_t capacity) : Building(BuildingType::Modern, loc, capacity)  {}
+ModernBuilding::ModernBuilding(Location* loc) : Building(BuildingType::Modern, loc)  {}
 
 double ModernBuilding::calculate_rent() const {
     auto base_rent = get_base_rent();

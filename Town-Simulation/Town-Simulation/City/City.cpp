@@ -1,13 +1,43 @@
 #include <stdio.h>
-#include "City.h"
 #include <stdexcept>
 #include <iostream>
 #include <cmath>
+#include "City.h"
 #include "BuildingRegistrations.h"
 
-City::City(int width, int height) : width(width),height(height),currentDay(1)
+
+#include "BuildingFactory.h"
+#include "ProfessionFactory.h"
+#include "LocationFactory.h"
+
+City::City(int width, int height) : width(width),height(height)
 {
     grid.resize(height,std::vector<Building*>(width,nullptr));
+    generate_random_buildings();
+}
+
+Location* City::generate_random_location(int x, int y) const
+{
+    LocationFactory factory = LocationFactory(width, height);
+    
+    return factory.create_location(x, y);
+}
+
+
+void City::generate_random_buildings()
+{
+    BuildingFactory* factory = BuildingFactory::get_factory();
+    for(int y = 0; y < height; y++)
+    {
+        for(int x = 0; x < width; x++)
+        {
+            BuildingType buildingType = (BuildingType)(std::rand() % Constants::BUILDING_TYPES);
+            
+            Building* newBuilding = factory->create_building(buildingType, generate_random_location(x, y));
+            
+            add_building(x, y, newBuilding);
+        }
+    }
 }
 
 
@@ -18,11 +48,13 @@ void City::add_building(int x, int y,Building *building)
     {
         throw std::invalid_argument("Wrong building information, can't be added!");
     }
+    if(grid[x][y] != nullptr)
+        return;
     
     grid[x][y] = building;
 }
 
-void City::freeDynamic() {
+void City::free_dynamic() {
     for(int i = 0; i < width; i++)
     {
         for(int j = 0; j < height; j++)
@@ -31,87 +63,6 @@ void City::freeDynamic() {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------------
-
-
-void City::simulate_day() {
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            Building* building = grid[i][j];
-                auto residents = building->get_residents();
-                residents.erase(std::remove_if(residents.begin(), residents.end(),
-                    [](const Resident* r) {
-                        return r->get_resident_info().get_money() <= 0 || r->get_resident_info().get_happiness() <= 0 || r->get_resident_info().get_life_points() <= 0;
-                    }), residents.end());
-            }
-        }
-    currentDay++;
-}
-   
-
-
-void City::simulate_month() {
-    for (int day = 0; day < 30; day++) {
-        simulate_day();
-    }
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            Building* building = grid[i][j];
-            if (building != nullptr) {
-                auto residents = building->get_residents();
-                for (Resident* r : residents) {
-                    r->receive_salary();
-                }
-            }
-        }
-    }
-}
-
-void City::print_status() {
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            Building* building = grid[i][j];
-            if (building != nullptr) {
-//                std::cout << "Building type: ";
-//                building->print_type();
-                std::cout<< "\n";
-                std::cout << "Residents: ";
-                auto residents = building->get_residents();
-                for (const Resident* r : residents) {
-                    std::cout << r->get_name() << " ";
-                }
-                std::cout << "\n";
-            }
-        }
-    }
-}
-
-// ------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
 
 Building* City::get_building_at(int x, int y)
 {
@@ -135,5 +86,5 @@ int City::get_height() const
 
 
 City::~City(){
-    freeDynamic();
+    free_dynamic();
 }

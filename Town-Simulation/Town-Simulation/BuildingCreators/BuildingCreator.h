@@ -8,7 +8,7 @@ public:
     
     BuildingType get_type() const;
     
-    virtual Building* create_building(Location* loc, int capacity) const = 0;
+    virtual Building* create_building(Location* loc) const = 0;
     
     virtual bool exists(BuildingType type) const;
         

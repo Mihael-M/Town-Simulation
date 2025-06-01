@@ -4,7 +4,7 @@
 
 ModernBuildingCreator::ModernBuildingCreator() : BuildingCreator(BuildingType::Modern) {}
 
-Building* ModernBuildingCreator::create_building(Location* loc, int capacity) const
+Building* ModernBuildingCreator::create_building(Location* loc) const
 {
-    return new ModernBuilding(loc, capacity);
+    return new ModernBuilding(loc);
 }

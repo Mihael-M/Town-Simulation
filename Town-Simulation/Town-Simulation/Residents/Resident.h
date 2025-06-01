@@ -3,6 +3,9 @@
 #include "Profession.h"
 #include "Building.h"
 #include <vector>
+#include <cstdlib>
+
+
 
 class Profession;
 class Building;
@@ -13,8 +16,14 @@ private:
     double money;
     int life_points;
     
+    static double generate_random_info()
+    {
+        return Constants::RESIDENT_MIN_INFO + (std::rand() % (Constants::RESIDENT_MAX_INFO - Constants::RESIDENT_MIN_INFO + 1));
+    }
+
+    
 public:
-    resident_info(int happiness, double money, int life_points){
+    resident_info(int happiness = generate_random_info(), double money = generate_random_info(), int life_points = generate_random_info()){
         set_happiness(happiness);
         set_money(money);
         set_life_points(life_points);
@@ -47,6 +56,7 @@ public:
     int get_life_points() const {
         return life_points;
     }
+    
 };
 
 struct resident_snapshot{
@@ -57,7 +67,7 @@ struct resident_snapshot{
 
 class Resident{
 public:
-    Resident(const std::string& name, Profession* job, const resident_info& info, Building* building);
+    Resident(Building* building,const std::string& name = generate_random_name(), const resident_info& info = *generate_random_resident_info() ,Profession* job = generate_random_profession());
         
     void receive_salary();
     
@@ -70,16 +80,24 @@ public:
     void record_snapshot(int currentDay);
     
     void set_building(Building* building);
-    
+        
     resident_info get_resident_info() const;
     
     ~Resident();
     
 private:
-    void freeDynamic();
+    void free_dynamic();
     
     void pay_rent();
+    
     void pay_for_food();
+    
+    static Profession* generate_random_profession();
+    
+    static std::string generate_random_name();
+    
+    static resident_info* generate_random_resident_info();
+    
     
     std::string name;
     

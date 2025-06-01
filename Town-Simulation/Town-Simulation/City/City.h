@@ -12,14 +12,6 @@ public:
     
     void add_building(int x, int y,Building* building);
     
-    //in command not city!!!!
-    
-    void simulate_day();
-    
-    void simulate_month();
-    
-    void print_status();
-    
     Building* get_building_at(int x, int y);
     
     int get_width() const;
@@ -31,13 +23,15 @@ public:
     
 private:
     
-    void freeDynamic();
+    void free_dynamic();
    
+    void generate_random_buildings();
+        
+    Location* generate_random_location(int x, int y) const;
     
     std::vector<std::vector<Building*>> grid;
     int width;
     int height;
-    int currentDay;
     
 };
 

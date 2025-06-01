@@ -9,7 +9,7 @@ private:
     
 public:
     
-    DormitoryBuilding(Location* loc,size_t capacity);
+    DormitoryBuilding(Location* loc);
     
     virtual double calculate_rent() const override;
     virtual double get_base_rent() const override;

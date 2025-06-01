@@ -18,7 +18,7 @@ void ProfessionFactory::register_profession(const ProfessionCreator* creator)
     creators[count++] = creator;
 }
 
-Profession* ProfessionFactory::create_profession(std::string& type)
+Profession* ProfessionFactory::create_profession(const std::string& type)
 {
     const ProfessionCreator* creator = get_creator(type);
     
@@ -32,7 +32,7 @@ Profession* ProfessionFactory::create_profession(std::string& type)
 }
 
 
-const ProfessionCreator* ProfessionFactory::get_creator(std::string& type) const
+const ProfessionCreator* ProfessionFactory::get_creator(const std::string& type) const
 {
     for(int i = 0; i < count; i++)
     {

@@ -13,11 +13,11 @@ public:
     
     void register_profession(const ProfessionCreator* creator);
     
-    Profession* create_profession(std::string& type);
+    Profession* create_profession(const std::string& type);
     
 private:
     
-    const ProfessionCreator* get_creator(std::string& type) const;
+    const ProfessionCreator* get_creator(const std::string& type) const;
     
     
 private:

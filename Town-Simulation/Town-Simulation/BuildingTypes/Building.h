@@ -11,7 +11,7 @@ class Resident;
 
 class Building{
 public:
-    Building(BuildingType type, Location* loc, size_t capacity = Constants::DEFAULT_INITIAL_RESIDENTS);
+    Building(BuildingType type, Location* loc, size_t capacity = generate_number_residents());
         
     std::vector<Resident*> get_residents() const;
 
@@ -24,6 +24,9 @@ public:
     virtual double get_base_rent() const = 0;
     
     virtual Building* clone() const = 0;
+    
+    
+    
     
     virtual ~Building();
     
@@ -40,7 +43,11 @@ protected:
     Location* loc;
     
 private:
-    void freeDynamic();
+    static size_t generate_number_residents();
+    
+    void generate_random_residents();
+    
+    void free_dynamic();
 };
 
 

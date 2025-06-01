@@ -17,13 +17,13 @@ void BuildingFactory::register_building(const BuildingCreator* creator)
         creators[count++] = creator;
 }
 
-Building* BuildingFactory::create_building(BuildingType type, Location* loc, int capacity)
+Building* BuildingFactory::create_building(BuildingType type, Location* loc)
 {
 
     const BuildingCreator* creator = get_creator(type);
     
     if (creator) {
-        return creator->create_building(loc, capacity);
+        return creator->create_building(loc);
     }
     else {
         return nullptr;

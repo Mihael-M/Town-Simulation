@@ -1,16 +1,23 @@
 #include <stdio.h>
 #include "Resident.h"
-#include "Constants.hpp"
 #include <iostream>
 #include <stdexcept>
+#include "ProfessionFactory.h"
 
+static std::vector<std::string> professionNames = {
+    "Teacher", "Programmer", "Miner", "Unemployed"
+};
 
-void Resident::freeDynamic(){
+static std::vector<std::string> names = {
+    "Bobby", "Kevin", "Olq", "Petq", "Kosta", "Trump", "Viktor", "Elena"
+};
+
+void Resident::free_dynamic(){
     delete profession;
 }
 
 Resident::~Resident(){
-    freeDynamic();
+    free_dynamic();
     profession = nullptr;
     building = nullptr;
 }
@@ -21,7 +28,7 @@ void Resident::set_building(Building* building)
 }
 
 
-Resident::Resident(const std::string& name, Profession* job, const resident_info& info, Building* building) : info(info) , name(name), profession(job), building(building) {}
+Resident::Resident(Building* building, const std::string& name, const resident_info& info, Profession* job) : info(info) , name(name), profession(job), building(building) {}
 
 void Resident::pay_rent(){    
     int curr_balance = info.get_money();
@@ -76,4 +83,25 @@ void Resident::print_info() const
     std::cout << "Name: " << name << "\n";
     std::cout << "Profession: " << profession->get_type() << "\n";
     std::cout << "Happiness: " << info.get_happiness() << ", Money: " << info.get_money() << ", Life: " << info.get_life_points() << std::endl;
+}
+
+
+Profession* Resident::generate_random_profession()
+{
+    ProfessionFactory* factory = ProfessionFactory::get_factory();
+    
+    int type = std::rand() % professionNames.size();
+    
+    return factory->create_profession(professionNames[type]);
+}
+
+std::string Resident::generate_random_name()
+{
+    int index = std::rand() % names.size();
+    return names[index];
+}
+
+resident_info* Resident::generate_random_resident_info()
+{
+    return new resident_info();
 }

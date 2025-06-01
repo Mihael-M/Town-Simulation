@@ -7,7 +7,7 @@ private:
     static constexpr double BASE_RENT = Constants::PANEL_BLOCK_BUILDING_RENT;
     
 public:
-    PanelBlockBuilding(Location* loc,size_t capacity);
+    PanelBlockBuilding(Location* loc);
     
     virtual double calculate_rent() const override;
     virtual double get_base_rent() const override;

@@ -2,10 +2,12 @@
 #include "Building.h"
 #include <stdexcept>
 #include <iostream>
+#include <cstdlib>
 
 Building::Building(const BuildingType type, Location* loc, size_t capacity) : type(type){
     this->loc = loc->clone();
     residents.reserve(capacity);
+    generate_random_residents();
 }
 
 void Building::add_resident(Resident *resident){
@@ -30,14 +32,14 @@ std::vector<Resident*> Building::get_residents() const{
 }
 
 
-void Building::freeDynamic(){
+void Building::free_dynamic(){
     for(int i = 0;i < residents.size(); i++)
             delete residents[i];
     
 }
 
 Building::~Building(){
-    freeDynamic();
+    free_dynamic();
     residents.clear();
 }
 
@@ -56,3 +58,18 @@ bool Building::is_empty() const{
 bool Building::is_full() const{
     return residents.size() == residents.capacity();
 }
+
+size_t Building::generate_number_residents()
+{
+    return Constants::DEFAULT_INITIAL_RESIDENTS + (std::rand() % (Constants::MAX_INITIAL_RESIDENTS - Constants::DEFAULT_INITIAL_RESIDENTS + 1));
+}
+
+void Building::generate_random_residents()
+{
+    int numberOfResidents = std::rand() % get_capacity() - 1;
+    for(int i = 0; i < numberOfResidents; i++)
+    {
+        residents.push_back(new Resident(this));
+    }
+}
+

@@ -11,7 +11,7 @@ public:
     
     void register_building(const BuildingCreator* creator);
 
-    Building* create_building(BuildingType type, Location* loc, int capacity);
+    Building* create_building(BuildingType type, Location* loc);
 
 private:
     const BuildingCreator* get_creator(BuildingType type) const;

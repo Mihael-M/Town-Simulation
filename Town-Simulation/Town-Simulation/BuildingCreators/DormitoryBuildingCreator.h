@@ -6,7 +6,7 @@ class DormitoryBuildingCreator : public BuildingCreator{
 public:
     DormitoryBuildingCreator();
     
-    virtual Building* create_building(Location* loc, int capacity) const override;
+    virtual Building* create_building(Location* loc) const override;
 };
 
 #endif /* DormitoryBuildingCreator_h */

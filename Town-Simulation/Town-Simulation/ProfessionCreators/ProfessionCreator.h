@@ -9,7 +9,7 @@ public:
     
     std::string get_profession_type() const;
     
-    virtual bool exists(std::string& type) const;
+    virtual bool exists(const std::string& type) const;
 
     virtual Profession* create_profession(const std::string& type) const = 0;
     

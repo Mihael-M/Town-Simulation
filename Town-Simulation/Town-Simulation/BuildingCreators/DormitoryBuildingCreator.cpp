@@ -4,7 +4,7 @@
 
 DormitoryBuildingCreator::DormitoryBuildingCreator() : BuildingCreator(BuildingType::Dormitory) {}
 
-Building* DormitoryBuildingCreator::create_building(Location* loc, int capacity) const
+Building* DormitoryBuildingCreator::create_building(Location* loc) const
 {
-    return new DormitoryBuilding(loc, capacity);
+    return new DormitoryBuilding(loc);
 }

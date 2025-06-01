@@ -9,7 +9,7 @@ private:
     
 public:
     
-    ModernBuilding(Location* loc,size_t capacity = Constants::DEFAULT_INITIAL_RESIDENTS);
+    ModernBuilding(Location* loc);
     
     virtual double calculate_rent() const override;
     virtual double get_base_rent() const override;

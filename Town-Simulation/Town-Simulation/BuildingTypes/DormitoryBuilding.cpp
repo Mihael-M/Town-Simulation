@@ -2,7 +2,7 @@
 #include "DormitoryBuilding.h"
 #include "BuildingType.h"
 
-DormitoryBuilding::DormitoryBuilding(Location* loc,size_t capacity) : Building(BuildingType::Dormitory, loc, capacity)  {}
+DormitoryBuilding::DormitoryBuilding(Location* loc) : Building(BuildingType::Dormitory, loc)  {}
 
 double DormitoryBuilding::calculate_rent() const {
     

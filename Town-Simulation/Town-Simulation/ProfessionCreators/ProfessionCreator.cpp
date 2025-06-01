@@ -8,7 +8,7 @@ std::string ProfessionCreator::get_profession_type() const
     return this->type;
 }
 
-bool ProfessionCreator::exists(std::string& type) const
+bool ProfessionCreator::exists(const std::string& type) const
 {
     return this->type == type;
 }

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "Unemployed.h"
 #include "Resident.h"
-#include <cstdlib>
 #include <cmath>
 
 Unemployed::Unemployed(const std::string& type) : Profession(type) {}
