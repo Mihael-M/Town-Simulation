@@ -30,7 +30,38 @@ void Resident::set_building(Building* building)
 
 Resident::Resident(Building* building, const std::string& name, const resident_info& info, Profession* job) : info(info) , name(name), profession(job), building(building) {}
 
-void Resident::pay_rent(){    
+const ResidentHistory& Resident::get_history() const
+{
+    return history;
+}
+
+
+Resident::Resident(const Resident& other) : name(other.name), info(other.info)
+{
+    copy_dynamic(other);
+}
+
+Resident& Resident::operator=(const Resident& other)
+{
+    if(this != & other)
+    {
+        name = other.name;
+        info = other.info;
+        free_dynamic();
+        copy_dynamic(other);
+    }
+    return *this;
+}
+
+void Resident::copy_dynamic(const Resident& other)
+{
+    building = other.building ? other.building->clone() : nullptr;
+    profession = other.profession->clone();
+}
+
+
+
+void Resident::pay_rent(){
     int curr_balance = info.get_money();
     int rent = building->calculate_rent();
     
@@ -63,26 +94,27 @@ resident_info Resident::get_resident_info() const{
     return info;
 }
 
-void Resident::record_snapshot(int currentDay)
-{
-    history.push_back({currentDay, info});
-}
+
 
 
 
 void Resident::live_day(bool isFirstDayOfMonth, int currentDay) {
     if (isFirstDayOfMonth)
+    {
         pay_rent();
-    
+        receive_salary();
+    }
+        
     pay_for_food();
-    record_snapshot(currentDay);
+    history.record_snapshot(*this);
 }
 
 void Resident::print_info() const
 {
-    std::cout << "Name: " << name << "\n";
     std::cout << "Profession: " << profession->get_type() << "\n";
-    std::cout << "Happiness: " << info.get_happiness() << ", Money: " << info.get_money() << ", Life: " << info.get_life_points() << std::endl;
+    std::cout << "Happiness: " << info.get_happiness() << std::endl;
+    std::cout<<"Money: " << info.get_money() << std::endl;
+    std::cout<<"Life: " << info.get_life_points() << std::endl;
 }
 
 
@@ -104,4 +136,13 @@ std::string Resident::generate_random_name()
 resident_info* Resident::generate_random_resident_info()
 {
     return new resident_info();
+}
+
+void Resident::print_history() const
+{
+    for(int i = 0; i < history.get_size(); i++)
+    {
+        std::cout<< i << ": ";
+        history.get_history()[i].print_info();
+    }
 }

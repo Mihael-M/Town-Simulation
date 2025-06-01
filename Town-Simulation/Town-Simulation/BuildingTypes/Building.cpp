@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cstdlib>
+#include "LocationType.h"
 
 Building::Building(const BuildingType type, Location* loc, size_t capacity) : type(type){
     this->loc = loc->clone();
@@ -25,6 +26,7 @@ void Building::remove_resident(const std::string &name) {
             return;
         }
     }
+    throw std::runtime_error("No resident with that name found in this building!");
 }
 
 std::vector<Resident*> Building::get_residents() const{
@@ -41,6 +43,32 @@ void Building::free_dynamic(){
 Building::~Building(){
     free_dynamic();
     residents.clear();
+}
+
+Building::Building(const Building& other) : type(other.type)
+{
+    residents.reserve(other.residents.capacity());
+    copy_dynamic(other);
+}
+
+Building& Building::operator=(const Building& other)
+{
+    if(this != &other)
+    {
+        type = other.type;
+        free_dynamic();
+        residents.clear();
+        residents.reserve(other.residents.capacity());
+        copy_dynamic(other);
+    }
+    return *this;
+}
+
+void Building::copy_dynamic(const Building& other)
+{
+    for(int i = 0; i < other.residents.size(); i++)
+        residents.push_back(new Resident(*other.residents[i]));
+    loc = other.loc->clone();
 }
 
 size_t Building::get_size() const{
@@ -73,3 +101,56 @@ void Building::generate_random_residents()
     }
 }
 
+void Building::print_residents() const
+{
+    for(int i = 0; i < residents.size(); i++)
+    {
+        std::cout<< i << ": " << residents[i]->get_name() << std::endl;
+        residents[i]->print_info();
+    }
+}
+
+void Building::print_building() const
+{
+    std::cout << "Type: ";
+    switch (type)
+    {
+        case BuildingType::Modern:
+            std::cout << "Modern" << std::endl;
+            break;
+        case BuildingType::PanelBlock:
+            std::cout << "PanelBlock" << std::endl;
+            break;
+        case BuildingType::Dormitory:
+            std::cout << "Dormitory" << std::endl;
+            break;
+        default:
+            std::cout << "Unknown type" << std::endl;
+            break;
+    }
+    switch (loc->get_type())
+    {
+        case LocationType::Central:
+            std::cout << "Central location" << std::endl;
+            break;
+        case LocationType::Peripheral:
+            std::cout << "Peripheral location" << std::endl;
+            break;
+        default:
+            std::cout << "Unknown location" << std::endl;
+            break;
+    }
+}
+
+void Building::print_resident(const std::string& name) const
+{
+    for(int i = 0; i < residents.size(); i++)
+    {
+        if(residents[i]->get_name() == name){
+            std::cout<<residents[i]->get_name() << std::endl;
+            residents[i]->print_info();
+            std::cout<<"History: "<<std::endl;
+            residents[i]->print_history();
+        }
+    }
+}

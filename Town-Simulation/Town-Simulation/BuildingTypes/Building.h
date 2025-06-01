@@ -12,6 +12,10 @@ class Resident;
 class Building{
 public:
     Building(BuildingType type, Location* loc, size_t capacity = generate_number_residents());
+    
+    Building(const Building& other);
+    
+    Building& operator=(const Building& other);
         
     std::vector<Resident*> get_residents() const;
 
@@ -25,17 +29,22 @@ public:
     
     virtual Building* clone() const = 0;
     
+    void print_residents() const;
     
+    void print_building() const;
     
+    void print_resident(const std::string& name) const;
     
-    virtual ~Building();
     
     size_t get_size() const;
     size_t get_capacity() const;
     bool is_empty() const;
     bool is_full() const;
     
+    virtual ~Building();
+    
 protected:
+    
     std::vector<Resident*> residents;
     
     
@@ -43,6 +52,8 @@ protected:
     Location* loc;
     
 private:
+    void copy_dynamic(const Building& other);
+    
     static size_t generate_number_residents();
     
     void generate_random_residents();

@@ -26,6 +26,20 @@ static constexpr int UNEMPLOYED_SALARY = 0;
 static constexpr int RESIDENT_MIN_INFO = 20;
 static constexpr int RESIDENT_MAX_INFO = 100;
 
+static constexpr int ADD_RESIDENT_ARGUMENTS = 7;
+static constexpr int REMOVE_RESIDENT_ARGUMENTS = 3;
+
+static constexpr int STEP_ARGUMENTS = 0;
+static constexpr int STEPS_ARGUMENTS = 1;
+
+static constexpr int BUILDING_INFO_ARGUMENTS = 2;
+
+static constexpr int RESIDENT_INFO_ARGUMENTS = 3;
+
+static constexpr int INFO_ARGUMENTS = 0;
+
+static constexpr int GENERATE_CITY_ARGUMENTS = 2;
+
 static constexpr int BUILDING_TYPES = 3;
 }
 

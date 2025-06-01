@@ -2,23 +2,33 @@
 #define Simulation_h
 
 #include "City.h"
+#include "ResidentManager.h"
 
 class Simulation {
 public:
     
-    Simulation(City* city);
+    Simulation(int currentDay, ResidentManager* manager);
     
-    void simulate_day();
+    int simulate_day();
     
-    void simulate_month();
+    int simulate_days(int n);
+    
+    void add_to_history(const City& city);
     
     void print_status() const;
 
     int get_current_day() const;
 
 private:
+    bool is_new_month();
     
-    City* city;
+    void update_day();
+    
+    
+    
+    ResidentManager* manager;
+    
+    std::vector<City> history;
     
     int currentDay;
     

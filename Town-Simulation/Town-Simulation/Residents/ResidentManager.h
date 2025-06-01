@@ -11,9 +11,9 @@ class City;
 class ResidentManager {
 public:
     
-    void addResident(City& city, int x, int y, Resident* resident);
+    void addResident(City* city, int x, int y, Resident* resident);
 
-    void removeResident(City& city, int x, int y, const std::string& name);
+    void removeResident(City* city, int x, int y, const std::string& name);
 };
 
 #endif /* ResidentManager_h */

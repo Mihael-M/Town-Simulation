@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdexcept>
+#include "RemoveResidentCommand.h"
+#include "CityContext.h"
+
+RemoveResidentCommand::RemoveResidentCommand(ResidentManager* manager) : manager(manager) {}
+
+void RemoveResidentCommand::execute(const std::vector<std::string>& args)
+{
+    if (args.size() != Constants::REMOVE_RESIDENT_ARGUMENTS)
+        throw std::invalid_argument("Not enough information to remove a resident!");
+    
+    CityContext* cityCon = CityContext::get_instance();
+    City* city = cityCon->get_city();
+    
+    if(!city)
+        throw std::runtime_error("City not created!");
+    
+    int x = std::atoi(args[0].c_str());
+    int y = std::atoi(args[1].c_str());
+    
+    Building* building = city->get_building_at(x, y);
+    if(!building)
+        throw std::runtime_error("No building found at specified coordinates!");
+    
+    std::string name = args[2];
+    
+    manager->removeResident(city, x, y, name);
+    
+    std::cout<<"Resident removed successfully." << std::endl;
+}

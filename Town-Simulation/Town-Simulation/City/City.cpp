@@ -7,13 +7,29 @@
 
 
 #include "BuildingFactory.h"
-#include "ProfessionFactory.h"
 #include "LocationFactory.h"
 
 City::City(int width, int height) : width(width),height(height)
 {
     grid.resize(height,std::vector<Building*>(width,nullptr));
     generate_random_buildings();
+}
+
+City::City(const City& other) : width(other.width), height(other.height)
+{
+    copy_dynamic(other);
+}
+
+City& City::operator=(const City& other)
+{
+    if(this != &other)
+    {
+        width = other.width;
+        height = other.height;
+        free_dynamic();
+        copy_dynamic(other);
+    }
+    return *this;
 }
 
 Location* City::generate_random_location(int x, int y) const
@@ -87,4 +103,17 @@ int City::get_height() const
 
 City::~City(){
     free_dynamic();
+}
+
+void City::copy_dynamic(const City& other)
+{
+    grid.resize(other.height, std::vector<Building*>(other.width, nullptr));
+
+    for (int y = 0; y < other.height; y++) {
+        for (int x = 0; x < other.width; x++) {
+            if (other.grid[y][x]) {
+                grid[y][x] = other.grid[y][x]->clone();
+            }
+        }
+    }
 }

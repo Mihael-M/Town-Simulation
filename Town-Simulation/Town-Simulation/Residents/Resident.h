@@ -2,10 +2,9 @@
 #define Resident_h
 #include "Profession.h"
 #include "Building.h"
+#include "ResidentHistory.h"
 #include <vector>
 #include <cstdlib>
-
-
 
 class Profession;
 class Building;
@@ -59,25 +58,26 @@ public:
     
 };
 
-struct resident_snapshot{
-    int day;
-    resident_info info;
-};
-
 
 class Resident{
 public:
-    Resident(Building* building,const std::string& name = generate_random_name(), const resident_info& info = *generate_random_resident_info() ,Profession* job = generate_random_profession());
+    Resident(Building* building, const std::string& name = generate_random_name(), const resident_info& info = *generate_random_resident_info() ,Profession* job = generate_random_profession());
         
+    Resident(const Resident& other);
+    
+    Resident& operator=(const Resident& other);
+    
     void receive_salary();
     
     void print_info() const;
+    
+    void print_history() const;
     
     const std::string& get_name() const;
     
     void live_day(bool isFirstDayOfMonth, int currentDay);
     
-    void record_snapshot(int currentDay);
+    const ResidentHistory& get_history() const;
     
     void set_building(Building* building);
         
@@ -86,7 +86,10 @@ public:
     ~Resident();
     
 private:
+    
     void free_dynamic();
+    
+    void copy_dynamic(const Resident& other);
     
     void pay_rent();
     
@@ -107,7 +110,7 @@ private:
     
     resident_info info;
     
-    std::vector<resident_snapshot> history;
+    ResidentHistory history;
 };
 
 

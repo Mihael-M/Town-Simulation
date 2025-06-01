@@ -9,6 +9,9 @@ public:
         
     City(int width,int height);
     
+    City(const City& other);
+    
+    City& operator=(const City& other);
     
     void add_building(int x, int y,Building* building);
     
@@ -22,6 +25,7 @@ public:
     
     
 private:
+    void copy_dynamic(const City& other);
     
     void free_dynamic();
    
@@ -34,8 +38,5 @@ private:
     int height;
     
 };
-
-
-
 
 #endif /* City_h */

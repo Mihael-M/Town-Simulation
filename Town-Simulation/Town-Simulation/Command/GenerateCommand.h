@@ -3,16 +3,20 @@
 
 #include "Command.h"
 #include "City.h"
+#include "CityContext.h"
+#include "Simulation.h"
+#include "ResidentManager.h"
 
 class GenerateCommand : public Command{
 public:
     
-    GenerateCommand(City* city);
+    GenerateCommand(Simulation* sim);
     
     virtual void execute(const std::vector<std::string>& args) override;
     
 private:
-    City* city;
+    
+    Simulation* sim;
     
 };
 

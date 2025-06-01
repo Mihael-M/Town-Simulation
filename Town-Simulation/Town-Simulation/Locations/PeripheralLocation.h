@@ -7,4 +7,5 @@ public:
     PeripheralLocation() = default;
     virtual double rent_multiplier() const override;
     virtual Location* clone() const override;
+    virtual LocationType get_type() const override;
 };

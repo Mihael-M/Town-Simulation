@@ -7,3 +7,8 @@ double CentralLocation::rent_multiplier() const{
 Location* CentralLocation::clone() const{
     return new CentralLocation(*this);
 }
+
+LocationType CentralLocation::get_type() const
+{
+    return LocationType::Central;
+}

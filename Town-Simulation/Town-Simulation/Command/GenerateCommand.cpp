@@ -2,16 +2,24 @@
 #include <ctime>
 #include "GenerateCommand.h"
 
-GenerateCommand::GenerateCommand(City* city) : city(city) {}
+GenerateCommand::GenerateCommand(Simulation* sim) : sim(sim) {}
 
 void GenerateCommand::execute(const std::vector<std::string>& args)
 {
-    if(args.size() != 2)
+    if(args.size() != Constants::GENERATE_CITY_ARGUMENTS)
         throw std::invalid_argument("Not enough information for generate command!");
+    CityContext* cityContext = CityContext::get_instance();
+    
+    City* city = cityContext->get_city();
+    
     int width = std::atoi(args[0].c_str());
     int height = std::atoi(args[1].c_str());
-    delete city;
-    city = new City(width, height);
+    
+    if(cityContext->city_exists())
+        delete city;
+    cityContext->set_city(new City(width, height));
+    
+    sim->add_to_history(*city);
     
     std::time_t t = std::time(nullptr);
     std::tm* now = std::localtime(&t);
