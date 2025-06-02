@@ -10,7 +10,7 @@ public:
     
     virtual void write(Simulation* sim) const = 0;
 
-    virtual ~Writer();
+    virtual ~Writer() = default;
 protected:
     std::string fileName;
 };

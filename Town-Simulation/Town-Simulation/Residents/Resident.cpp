@@ -146,3 +146,59 @@ void Resident::print_history(std::ostream& os) const
         history.get_history()[i].print_info(os);
     }
 }
+
+
+void ResidentHistory::record_snapshot(const Resident& res)
+{
+    history.push_back(res);
+}
+
+const std::vector<Resident>& ResidentHistory::get_history() const
+{
+    return history;
+}
+
+size_t ResidentHistory::get_size() const
+{
+    return history.size();
+}
+
+
+resident_info::resident_info(int happiness, double money, int life_points){
+    set_happiness(happiness);
+    set_money(money);
+    set_life_points(life_points);
+}
+
+void resident_info::set_happiness(int happiness){
+    if(happiness < 0)
+        throw std::invalid_argument("Invalid happiness!");
+    this->happiness = happiness;
+}
+
+void resident_info::set_life_points(int life_points){
+    if(life_points < 0)
+        throw std::invalid_argument("Invalid life points!");
+    this->life_points = life_points;
+}
+
+void resident_info::set_money(double money){
+    this->money = money;
+}
+
+int resident_info::get_happiness() const {
+    return happiness;
+}
+
+double resident_info::get_money() const {
+    return money;
+}
+
+int resident_info::get_life_points() const {
+    return life_points;
+}
+
+double resident_info::generate_random_info()
+{
+    return Constants::RESIDENT_MIN_INFO + (std::rand() % (Constants::RESIDENT_MAX_INFO - Constants::RESIDENT_MIN_INFO + 1));
+}

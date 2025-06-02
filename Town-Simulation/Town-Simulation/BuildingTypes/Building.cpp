@@ -150,7 +150,7 @@ void Building::print_resident(const std::string& name) const
             std::cout<<residents[i]->get_name() << std::endl;
             residents[i]->print_info(std::cout);
             std::cout<<"History: "<<std::endl;
-            residents[i]->print_history();
+            residents[i]->print_history(std::cout);
         }
     }
 }

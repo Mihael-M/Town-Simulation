@@ -2,12 +2,29 @@
 #define Resident_h
 #include "Profession.h"
 #include "Building.h"
-#include "ResidentHistory.h"
 #include <vector>
 #include <cstdlib>
 
 class Profession;
 class Building;
+
+class ResidentHistory {
+public:
+    
+    const std::vector<Resident>& get_history() const;
+    
+    void record_snapshot(const Resident& res);
+    
+    size_t get_size() const;
+    
+private:
+    std::vector<Resident> history;
+    int x;
+    int y;
+};
+
+
+
 
 
 struct resident_info{
@@ -16,46 +33,23 @@ private:
     double money;
     int life_points;
     
-    static double generate_random_info()
-    {
-        return Constants::RESIDENT_MIN_INFO + (std::rand() % (Constants::RESIDENT_MAX_INFO - Constants::RESIDENT_MIN_INFO + 1));
-    }
+    static double generate_random_info();
 
     
 public:
-    resident_info(int happiness = generate_random_info(), double money = generate_random_info(), int life_points = generate_random_info()){
-        set_happiness(happiness);
-        set_money(money);
-        set_life_points(life_points);
-    }
+    resident_info(int happiness = generate_random_info(), double money = generate_random_info(), int life_points = generate_random_info());
     
-    void set_happiness(int happiness){
-        if(happiness < 0)
-            throw std::invalid_argument("Invalid happiness!");
-        this->happiness = happiness;
-    }
+    void set_happiness(int happiness);
     
-    void set_life_points(int life_points){
-        if(life_points < 0)
-            throw std::invalid_argument("Invalid life points!");
-        this->life_points = life_points;
-    }
+    void set_life_points(int life_points);
 
-    void set_money(double money){
-        this->money = money;
-    }
+    void set_money(double money);
 
-    int get_happiness() const {
-        return happiness;
-    }
+    int get_happiness() const;
 
-    double get_money() const {
-        return money;
-    }
+    double get_money() const;
 
-    int get_life_points() const {
-        return life_points;
-    }
+    int get_life_points() const;
     
 };
 

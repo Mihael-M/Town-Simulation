@@ -7,7 +7,7 @@ class InfoCommand : public Command{
 public:
     InfoCommand(Simulation* sim);
   
-    virtual void execute(const std::string& args) override;
+    virtual void execute(const std::vector<std::string>& args) override;
 private:
     Simulation* sim;
 };

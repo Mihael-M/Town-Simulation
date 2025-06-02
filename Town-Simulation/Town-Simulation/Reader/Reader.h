@@ -16,7 +16,7 @@ public:
     
     virtual void read() = 0;
     
-    virtual ~Reader();
+    virtual ~Reader() = default;
     
 protected:
     std::string fileName;
