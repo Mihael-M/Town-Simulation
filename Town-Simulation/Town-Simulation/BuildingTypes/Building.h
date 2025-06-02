@@ -29,9 +29,9 @@ public:
     
     virtual Building* clone() const = 0;
     
-    void print_residents() const;
+    void print_residents(std::ostream& os) const;
     
-    void print_building() const;
+    void print_building(std::ostream& os) const;
     
     void print_resident(const std::string& name) const;
     

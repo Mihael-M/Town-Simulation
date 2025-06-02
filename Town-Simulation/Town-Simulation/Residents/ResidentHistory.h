@@ -1,7 +1,7 @@
 #ifndef ResidentHistory_h
 #define ResidentHistory_h
+#include <vector>
 #include "Resident.h"
-
 
 class ResidentHistory {
 public:

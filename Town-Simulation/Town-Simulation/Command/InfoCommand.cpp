@@ -9,6 +9,6 @@ void InfoCommand::execute(const std::string& args)
     if(args.size() != Constants::INFO_ARGUMENTS)
         throw std::invalid_argument("Wrong arguments for info!");
     
-    sim->print_status();
+    sim->print_status(std::cout);
 }
 

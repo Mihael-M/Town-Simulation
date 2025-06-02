@@ -109,12 +109,12 @@ void Resident::live_day(bool isFirstDayOfMonth, int currentDay) {
     history.record_snapshot(*this);
 }
 
-void Resident::print_info() const
+void Resident::print_info(std::ostream& os) const
 {
-    std::cout << "Profession: " << profession->get_type() << "\n";
-    std::cout << "Happiness: " << info.get_happiness() << std::endl;
-    std::cout<<"Money: " << info.get_money() << std::endl;
-    std::cout<<"Life: " << info.get_life_points() << std::endl;
+    os<< "Profession: " << profession->get_type() << "\n";
+    os << "Happiness: " << info.get_happiness() << std::endl;
+    os<<"Money: " << info.get_money() << std::endl;
+    os<<"Life: " << info.get_life_points() << std::endl;
 }
 
 
@@ -138,11 +138,11 @@ resident_info* Resident::generate_random_resident_info()
     return new resident_info();
 }
 
-void Resident::print_history() const
+void Resident::print_history(std::ostream& os) const
 {
     for(int i = 0; i < history.get_size(); i++)
     {
         std::cout<< i << ": ";
-        history.get_history()[i].print_info();
+        history.get_history()[i].print_info(os);
     }
 }

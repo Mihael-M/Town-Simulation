@@ -101,43 +101,43 @@ void Building::generate_random_residents()
     }
 }
 
-void Building::print_residents() const
+void Building::print_residents(std::ostream& os) const
 {
     for(int i = 0; i < residents.size(); i++)
     {
-        std::cout<< i << ": " << residents[i]->get_name() << std::endl;
-        residents[i]->print_info();
+        os<< i << ": " << residents[i]->get_name() << std::endl;
+        residents[i]->print_info(os);
     }
 }
 
-void Building::print_building() const
+void Building::print_building(std::ostream& os) const
 {
-    std::cout << "Type: ";
+    os << "Type: ";
     switch (type)
     {
         case BuildingType::Modern:
-            std::cout << "Modern" << std::endl;
+            os << "Modern" << std::endl;
             break;
         case BuildingType::PanelBlock:
-            std::cout << "PanelBlock" << std::endl;
+            os << "PanelBlock" << std::endl;
             break;
         case BuildingType::Dormitory:
-            std::cout << "Dormitory" << std::endl;
+            os << "Dormitory" << std::endl;
             break;
         default:
-            std::cout << "Unknown type" << std::endl;
+            os << "Unknown type" << std::endl;
             break;
     }
     switch (loc->get_type())
     {
         case LocationType::Central:
-            std::cout << "Central location" << std::endl;
+            os << "Central location" << std::endl;
             break;
         case LocationType::Peripheral:
-            std::cout << "Peripheral location" << std::endl;
+            os << "Peripheral location" << std::endl;
             break;
         default:
-            std::cout << "Unknown location" << std::endl;
+            os << "Unknown location" << std::endl;
             break;
     }
 }
@@ -148,7 +148,7 @@ void Building::print_resident(const std::string& name) const
     {
         if(residents[i]->get_name() == name){
             std::cout<<residents[i]->get_name() << std::endl;
-            residents[i]->print_info();
+            residents[i]->print_info(std::cout);
             std::cout<<"History: "<<std::endl;
             residents[i]->print_history();
         }

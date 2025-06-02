@@ -1,6 +1,13 @@
-TODO: Трябва да направя command design pattern 
 
 
 
-и да измисля как ще направя симулацията да работи назад ако и се връща назад....
+implement the logic for loading from file
+
+factory for readers and writers ???? maybe
+
+register all commands 
+
+function for menu for the simulation
+
+
 

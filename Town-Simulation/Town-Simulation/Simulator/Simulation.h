@@ -15,7 +15,7 @@ public:
     
     void add_to_history(const City& city);
     
-    void print_status() const;
+    void print_status(std::ostream& os) const;
 
     int get_current_day() const;
 

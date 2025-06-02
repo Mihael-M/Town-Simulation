@@ -38,6 +38,11 @@ static constexpr int RESIDENT_INFO_ARGUMENTS = 3;
 
 static constexpr int INFO_ARGUMENTS = 0;
 
+static constexpr int SAVE_ARGUMENTS = 1;
+
+static constexpr int LOAD_ARGUMENTS = 1;
+
+
 static constexpr int GENERATE_CITY_ARGUMENTS = 2;
 
 static constexpr int BUILDING_TYPES = 3;

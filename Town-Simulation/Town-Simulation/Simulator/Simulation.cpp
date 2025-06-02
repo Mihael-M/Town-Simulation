@@ -3,6 +3,7 @@
 #include "CityContext.h"
 #include <iostream>
 
+
 Simulation::Simulation(int currentDay, ResidentManager* manager) : manager(manager), currentDay(currentDay) {}
 
 int Simulation::simulate_day() {
@@ -69,16 +70,16 @@ int Simulation::simulate_days(int n)
     }
 }
 
-void Simulation::print_status() const {
+void Simulation::print_status(std::ostream& os) const {
     CityContext* context = CityContext::get_instance();
     City* city = context->get_city();
     
     for (int i = 0; i < city->get_height(); i++) {
         for (int j = 0; j < city->get_width(); j++) {
             Building* building = city->get_building_at(i, j);
-            std::cout<<"Location " << i << " " << j << ": ";
-            building->print_building();
-            building->print_residents();
+            os<<"Location " << i << " " << j << ": ";
+            building->print_building(os);
+            building->print_residents(os);
         }
     }
 }

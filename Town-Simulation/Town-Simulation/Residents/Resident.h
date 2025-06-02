@@ -9,6 +9,7 @@
 class Profession;
 class Building;
 
+
 struct resident_info{
 private:
     int happiness;
@@ -69,9 +70,9 @@ public:
     
     void receive_salary();
     
-    void print_info() const;
+    void print_info(std::ostream& os) const;
     
-    void print_history() const;
+    void print_history(std::ostream& os) const;
     
     const std::string& get_name() const;
     

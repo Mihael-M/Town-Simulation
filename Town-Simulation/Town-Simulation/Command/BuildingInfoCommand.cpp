@@ -18,6 +18,6 @@ void BuildingInfoCommand::execute(const std::vector<std::string>& args)
     Building* building = city->get_building_at(x, y);
     if(!building)
         throw std::runtime_error("Building does noe exist!");
-    building->print_residents();
-    building->print_building();
+    building->print_residents(std::cout);
+    building->print_building(std::cout);
 }
