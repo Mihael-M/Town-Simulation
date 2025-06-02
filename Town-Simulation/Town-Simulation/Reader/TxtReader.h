@@ -7,6 +7,6 @@ class TxtReader : public Reader{
 public:
     TxtReader(const std::string& fileName);
     
-    virtual void read() override;
+    virtual void read(Simulation* sim) override;
 };
 #endif /* TxtReader_h */

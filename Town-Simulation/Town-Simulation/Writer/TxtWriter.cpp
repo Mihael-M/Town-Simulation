@@ -13,6 +13,6 @@ void TxtWriter::write(Simulation* sim) const
     ofs.open(fileName);
     if(!ofs)
         throw std::runtime_error("File could not open!");
-    sim->print_status(ofs);
+    sim->save_simulation_to_file(ofs);
     ofs.close();
 }

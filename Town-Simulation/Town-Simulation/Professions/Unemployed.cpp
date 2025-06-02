@@ -9,8 +9,8 @@ int Unemployed::get_salary() const{
     return Constants::UNEMPLOYED_SALARY;
 }
 
-void Unemployed::monthly_update(Resident* resident){
-    auto resident_info = resident->get_resident_info();
+void Unemployed::monthly_update(Resident& resident){
+    auto resident_info = resident.get_resident_info();
     resident_info.set_life_points(std::max(0, resident_info.get_life_points() - 1));
 }
 

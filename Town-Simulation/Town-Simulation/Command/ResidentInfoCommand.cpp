@@ -10,7 +10,7 @@ void ResidentInfoCommand::execute(const std::vector<std::string>& args)
         
     CityContext* context = CityContext::get_instance();
     City* city = context->get_city();
-    if(!city)
+    if(!context->city_exists())
         throw std::runtime_error("City not created!");
     
     int x = std::atoi(args[0].c_str());

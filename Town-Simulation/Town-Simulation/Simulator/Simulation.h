@@ -18,6 +18,8 @@ public:
     void print_status(std::ostream& os) const;
 
     int get_current_day() const;
+    
+    void save_simulation_to_file(std::ofstream& ofs) const;
 
 private:
     bool is_new_month();

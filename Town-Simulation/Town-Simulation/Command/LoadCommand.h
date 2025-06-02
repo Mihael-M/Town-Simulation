@@ -6,9 +6,11 @@
 
 class LoadCommand : public Command {
 public:
-    
+    LoadCommand(Simulation* sim);
     virtual void execute(const std::vector<std::string>& args) override;
 
+private:
+    Simulation* sim;
     
 };
 

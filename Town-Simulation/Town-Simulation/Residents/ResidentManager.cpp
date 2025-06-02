@@ -11,7 +11,6 @@ void ResidentManager::addResident(City* city, int x, int y, Resident* resident)
     Building* building = city->get_building_at(x, y);
     if (building) {
         building->add_resident(resident);
-        resident->set_building(building);
     }
 }
 
@@ -22,6 +21,5 @@ void ResidentManager::removeResident(City* city, int x, int y, const std::string
     Building* building = city->get_building_at(x, y);
     if (building) {
         building->remove_resident(name);
-        
     }
 }

@@ -4,6 +4,50 @@
 #include <stdexcept>
 #include "ProfessionFactory.h"
 
+ResidentSnapshot::ResidentSnapshot(const Resident& res) : name(res.get_name()), profession(res.get_profession()), info(res.get_resident_info()) {}
+
+void ResidentSnapshot::save_snapshot_to_file(std::ofstream& ofs) const
+{
+    ofs<<name<<std::endl;
+    ofs<<profession->get_type()<<std::endl;
+    info.save_info_to_file(ofs);
+}
+
+void ResidentSnapshot::print_history(std::ostream& os) const
+{
+    os<< "Profession: " << profession->get_type() << std::endl;
+    os << "Happiness: " << info.get_happiness() << std::endl;
+    os<<"Money: " << info.get_money() << std::endl;
+    os<<"Life: " << info.get_life_points() << std::endl;
+}
+
+
+void ResidentHistory::record_snapshot(const Resident& res)
+{
+    history.push_back(ResidentSnapshot(res));
+}
+
+const std::vector<ResidentSnapshot>& ResidentHistory::get_history() const
+{
+    return history;
+}
+
+size_t ResidentHistory::get_size() const
+{
+    return history.size();
+}
+
+void ResidentHistory::save_history_to_file(std::ofstream& ofs) const
+{
+    for(int i = 0; i < history.size(); i++)
+    {
+        history[i].save_snapshot_to_file(ofs);
+    }
+}
+
+
+
+
 static std::vector<std::string> professionNames = {
     "Teacher", "Programmer", "Miner", "Unemployed"
 };
@@ -19,22 +63,15 @@ void Resident::free_dynamic(){
 Resident::~Resident(){
     free_dynamic();
     profession = nullptr;
-    building = nullptr;
-}
-
-void Resident::set_building(Building* building)
-{
-    this->building = building;
 }
 
 
-Resident::Resident(Building* building, const std::string& name, const resident_info& info, Profession* job) : info(info) , name(name), profession(job), building(building) {}
+Resident::Resident(const std::string& name, const resident_info& info, Profession* job) : info(info) , name(name), profession(job) {}
 
 const ResidentHistory& Resident::get_history() const
 {
     return history;
 }
-
 
 Resident::Resident(const Resident& other) : name(other.name), info(other.info)
 {
@@ -55,20 +92,19 @@ Resident& Resident::operator=(const Resident& other)
 
 void Resident::copy_dynamic(const Resident& other)
 {
-    building = other.building ? other.building->clone() : nullptr;
     profession = other.profession->clone();
 }
 
 
 
-void Resident::pay_rent(){
+void Resident::pay_rent(Building* building){
     int curr_balance = info.get_money();
     int rent = building->calculate_rent();
     
-    curr_balance -= rent;
+    info.set_money(curr_balance -= rent);
     
     if (curr_balance < 0)
-        curr_balance = 0;
+        info.set_money(0);
 }
 
 
@@ -79,15 +115,15 @@ const std::string& Resident::get_name() const {
 void Resident::pay_for_food(){
     int curr_balance = info.get_money();
     
-    curr_balance -= Constants::FOOD_EXPENSES;
+    info.set_money(curr_balance -= Constants::FOOD_EXPENSES);
     if(curr_balance < 0)
-        curr_balance = 0;
+        info.set_money(0);
 }
 
 
 void Resident::receive_salary() {
     info.set_money(info.get_money() + profession->get_salary());
-    profession->monthly_update(this);
+    profession->monthly_update(*this);
 }
 
 resident_info Resident::get_resident_info() const{
@@ -95,26 +131,39 @@ resident_info Resident::get_resident_info() const{
 }
 
 
-
-
-
-void Resident::live_day(bool isFirstDayOfMonth, int currentDay) {
+void Resident::live_day(bool isFirstDayOfMonth, int currentDay, Building* building) {
+    history.record_snapshot(*this);
     if (isFirstDayOfMonth)
     {
-        pay_rent();
+        pay_rent(building);
         receive_salary();
     }
         
     pay_for_food();
-    history.record_snapshot(*this);
+    
 }
 
 void Resident::print_info(std::ostream& os) const
 {
-    os<< "Profession: " << profession->get_type() << "\n";
+    os<< "Profession: " << profession->get_type() << std::endl;
     os << "Happiness: " << info.get_happiness() << std::endl;
     os<<"Money: " << info.get_money() << std::endl;
     os<<"Life: " << info.get_life_points() << std::endl;
+}
+
+void Resident::save_to_file(std::ofstream& ofs) const
+{
+    ofs<<name;
+    ofs<<profession->get_type();
+    info.save_info_to_file(ofs);
+    history.save_history_to_file(ofs);
+}
+
+void resident_info::save_info_to_file(std::ofstream& ofs) const
+{
+    ofs<< happiness << std::endl;
+    ofs<< money << std::endl;
+    ofs<< life_points << std::endl;
 }
 
 
@@ -143,26 +192,17 @@ void Resident::print_history(std::ostream& os) const
     for(int i = 0; i < history.get_size(); i++)
     {
         std::cout<< i << ": ";
-        history.get_history()[i].print_info(os);
+        history.get_history()[i].print_history(os);
     }
 }
 
 
-void ResidentHistory::record_snapshot(const Resident& res)
-{
-    history.push_back(res);
-}
 
-const std::vector<Resident>& ResidentHistory::get_history() const
-{
-    return history;
-}
 
-size_t ResidentHistory::get_size() const
+Profession* Resident::get_profession() const
 {
-    return history.size();
+    return profession;
 }
-
 
 resident_info::resident_info(int happiness, double money, int life_points){
     set_happiness(happiness);
@@ -202,3 +242,4 @@ double resident_info::generate_random_info()
 {
     return Constants::RESIDENT_MIN_INFO + (std::rand() % (Constants::RESIDENT_MAX_INFO - Constants::RESIDENT_MIN_INFO + 1));
 }
+

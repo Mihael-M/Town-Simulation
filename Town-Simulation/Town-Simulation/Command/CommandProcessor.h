@@ -2,11 +2,18 @@
 #define CommandProcessor_h
 
 #include "Command.h"
+
 #include <iostream>
+
+struct CommandEntry {
+    std::string name;
+    unsigned argCount;
+    Command* command;
+};
 
 class CommandProcessor{
 public:
-    void register_command(const std::string& name,Command* command);
+    void register_command(const std::string& name,unsigned arguments ,Command* command);
     
     void process_command(std::string& input);
     
@@ -16,7 +23,7 @@ private:
     
     void tokenize(std::vector<std::string>& tokens,std::string& input);
     
-    std::vector<std::pair<std::string, Command*>> commands;
+    std::vector<CommandEntry> commands;
     
 };
 

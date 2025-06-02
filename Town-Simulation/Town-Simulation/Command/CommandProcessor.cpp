@@ -2,9 +2,11 @@
 #include "CommandProcessor.h"
 #include <stdexcept>
 
-void CommandProcessor::register_command(const std::string& name,Command* command)
+
+
+void CommandProcessor::register_command(const std::string& name,unsigned arguments, Command* command)
 {
-    commands.push_back({name, command});
+    commands.push_back({name, arguments, command});
 }
 
 void CommandProcessor::process_command(std::string& input)
@@ -20,30 +22,35 @@ void CommandProcessor::process_command(std::string& input)
     
     for(int i = 0; i < commands.size(); i++)
     {
-        if(name == commands[i].first){
-            commands[i].second->execute(args);
+        if(name == commands[i].name && args.size() == commands[i].argCount){
+            commands[i].command->execute(args);
             return;
         }
     }
     throw std::runtime_error("Unknown command!");
     
 }
-void CommandProcessor::tokenize(std::vector<std::string>& tokens,std::string& input)
+void CommandProcessor::tokenize(std::vector<std::string>& tokens, std::string& input)
 {
     std::string token;
-    for(int i = 0; i <= input.size(); i++)
+    for (size_t i = 0; i < input.size(); ++i)
     {
-        if(input.size() > i || input[i] == ' ')
+        if (input[i] == ' ')
         {
-            if(!tokens.empty())
+            if (!token.empty())
             {
                 tokens.push_back(token);
                 token.clear();
             }
         }
-        else{
+        else
+        {
             token += input[i];
         }
+    }
+    if (!token.empty())
+    {
+        tokens.push_back(token);
     }
 }
 
@@ -57,6 +64,6 @@ void CommandProcessor::free_dynamic()
 {
     for(int i = 0; i < commands.size();i++)
     {
-        delete commands[i].second;
+        delete commands[i].command;
     }
 }

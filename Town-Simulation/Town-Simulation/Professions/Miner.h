@@ -8,7 +8,7 @@ public:
     Miner(const std::string& type);
     
     virtual int get_salary() const override;
-    virtual void monthly_update(Resident* resident) override;
+    virtual void monthly_update(Resident& resident) override;
     virtual Profession* clone() const override;
 };
 

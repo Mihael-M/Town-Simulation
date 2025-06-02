@@ -12,7 +12,7 @@ public:
     
     virtual int get_salary() const = 0;
     
-    virtual void monthly_update(Resident* resident) = 0;
+    virtual void monthly_update(Resident& resident) = 0;
     
     const std::string& get_type() const;
     

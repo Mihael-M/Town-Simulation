@@ -12,10 +12,10 @@ void AddResidentCommand::execute(const std::vector<std::string> & args)
         throw std::invalid_argument("Not enough information to add a resident!");
     
     ProfessionFactory* factory = ProfessionFactory::get_factory();
-    CityContext* cityCon = CityContext::get_instance();
-    City* city = cityCon->get_city();
+    CityContext* context = CityContext::get_instance();
+    City* city = context->get_city();
     
-    if(!city)
+    if(!context->city_exists())
         throw std::runtime_error("City not created!");
     
     
@@ -36,9 +36,9 @@ void AddResidentCommand::execute(const std::vector<std::string> & args)
     
     Profession* profession = factory->create_profession(professionType);
     
-    Resident resident(building,name, info, profession);
+    Resident* resident = new Resident(name, info, profession);
     
-    manager->addResident(city, x, y, &resident);
+    manager->addResident(city, x, y, resident);
     
     std::cout<<"Resident added successfully."<<std::endl;
 }

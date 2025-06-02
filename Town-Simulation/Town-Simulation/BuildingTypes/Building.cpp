@@ -97,7 +97,7 @@ void Building::generate_random_residents()
     int numberOfResidents = std::rand() % get_capacity() - 1;
     for(int i = 0; i < numberOfResidents; i++)
     {
-        residents.push_back(new Resident(this));
+        residents.push_back(new Resident());
     }
 }
 
@@ -153,4 +153,11 @@ void Building::print_resident(const std::string& name) const
             residents[i]->print_history(std::cout);
         }
     }
+}
+
+void Building::save_building_to_file(std::ofstream& ofs) const
+{
+    print_building(ofs);
+    for(int i = 0; i < residents.size(); i++)
+        residents[i]->save_to_file(ofs);
 }

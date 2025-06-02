@@ -7,12 +7,12 @@
 Programmer::Programmer(const std::string& type) : Profession(type) {}
 
 int Programmer::get_salary() const{
-    return Constants::PROGRAMMER_MIN_SALARY + (std::rand() + (Constants::PROGRAMMER_MAX_SALARY - Constants::PROGRAMMER_MIN_SALARY + 1));
+    return Constants::PROGRAMMER_MIN_SALARY + (std::rand() % (Constants::PROGRAMMER_MAX_SALARY - Constants::PROGRAMMER_MIN_SALARY + 1));
 }
 
-void Programmer::monthly_update(Resident* resident){
-    auto resident_info = resident->get_resident_info();
-    resident_info.set_happiness(std::max(resident_info.get_happiness() - 1, 0));
+void Programmer::monthly_update(Resident& resident){
+    resident_info info = resident.get_resident_info();
+    info.set_happiness(std::max(info.get_happiness() - 1, 0));
 }
 
 Profession* Programmer::clone() const{

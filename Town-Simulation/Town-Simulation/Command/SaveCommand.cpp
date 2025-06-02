@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "SaveCommand.h"
-#include "Simulation.h"
+
 
 SaveCommand::SaveCommand(Simulation* sim) : sim(sim) {}
 

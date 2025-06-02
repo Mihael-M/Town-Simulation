@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "LoadCommand.h"
-#include "Simulation.h"
+
+LoadCommand::LoadCommand(Simulation* sim) : sim(sim) {}
 
 void LoadCommand::execute(const std::vector<std::string>& args)
 {

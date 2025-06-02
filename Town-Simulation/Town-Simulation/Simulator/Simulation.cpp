@@ -27,7 +27,7 @@ int Simulation::simulate_day() {
                     manager->removeResident(city, i, j, residents[z]->get_name());
                     res++;
                 }
-                residents[z]->live_day(is_new_month(), currentDay);
+                residents[z]->live_day(currentDay == 1, currentDay, building);
             }
             
         }
@@ -42,9 +42,6 @@ void Simulation::add_to_history(const City& city)
 }
 
 
-// could be better...
-
-
 int Simulation::simulate_days(int n)
 {
     int peopleRemoved = 0;
@@ -56,16 +53,14 @@ int Simulation::simulate_days(int n)
         return peopleRemoved;
     }
     else {
-        size_t index = history.size() - n;
-        while(n != 0 && history.size() > 1)
-        {
+        for (int i = 0; i < -n && history.size() > 1; ++i) {
             history.pop_back();
-            n++;
-            index++;
+            currentDay--;
         }
+
         CityContext* context = CityContext::get_instance();
         City* city = context->get_city();
-        *city = history[index];
+        *city = history.back();
         return peopleRemoved;
     }
 }
@@ -92,4 +87,10 @@ bool Simulation::is_new_month()
 void Simulation::update_day()
 {
     currentDay = 1;
+}
+
+void Simulation::save_simulation_to_file(std::ofstream& ofs) const
+{
+    for(int i = 0; i < history.size(); i++)
+        history[i].save_city_to_file(ofs);
 }

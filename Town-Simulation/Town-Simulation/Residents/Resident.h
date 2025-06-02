@@ -1,31 +1,20 @@
 #ifndef Resident_h
 #define Resident_h
+#include <vector>
+#include <fstream>
 #include "Profession.h"
 #include "Building.h"
+
 #include <vector>
 #include <cstdlib>
+#include <fstream>
+
+
+
+
 
 class Profession;
 class Building;
-
-class ResidentHistory {
-public:
-    
-    const std::vector<Resident>& get_history() const;
-    
-    void record_snapshot(const Resident& res);
-    
-    size_t get_size() const;
-    
-private:
-    std::vector<Resident> history;
-    int x;
-    int y;
-};
-
-
-
-
 
 struct resident_info{
 private:
@@ -51,12 +40,49 @@ public:
 
     int get_life_points() const;
     
+    void save_info_to_file(std::ofstream& ofs) const;
+    
+};
+
+class ResidentSnapshot{
+public:
+    ResidentSnapshot(const Resident& res);
+    
+    void save_snapshot_to_file(std::ofstream& ofs) const;
+    
+    void print_history(std::ostream& os) const;
+    
+private:
+    std::string name;
+    
+    Profession* profession;
+    
+    Building* building;
+    
+    resident_info info;
+};
+
+class ResidentHistory {
+public:
+    
+    const std::vector<ResidentSnapshot>& get_history() const;
+    
+    void record_snapshot(const Resident& res);
+    
+    size_t get_size() const;
+    
+    void save_history_to_file(std::ofstream& ofs) const;
+    
+private:
+    std::vector<ResidentSnapshot> history;
+    int x;
+    int y;
 };
 
 
 class Resident{
 public:
-    Resident(Building* building, const std::string& name = generate_random_name(), const resident_info& info = *generate_random_resident_info() ,Profession* job = generate_random_profession());
+    Resident(const std::string& name = generate_random_name(), const resident_info& info = *generate_random_resident_info() ,Profession* job = generate_random_profession());
         
     Resident(const Resident& other);
     
@@ -70,13 +96,15 @@ public:
     
     const std::string& get_name() const;
     
-    void live_day(bool isFirstDayOfMonth, int currentDay);
+    void live_day(bool isFirstDayOfMonth, int currentDay, Building* building);
     
     const ResidentHistory& get_history() const;
-    
-    void set_building(Building* building);
         
     resident_info get_resident_info() const;
+    
+    Profession* get_profession() const;
+    
+    void save_to_file(std::ofstream& ofs) const;
     
     ~Resident();
     
@@ -86,7 +114,7 @@ private:
     
     void copy_dynamic(const Resident& other);
     
-    void pay_rent();
+    void pay_rent(Building* building);
     
     void pay_for_food();
     
@@ -100,8 +128,6 @@ private:
     std::string name;
     
     Profession* profession;
-    
-    Building* building;
     
     resident_info info;
     

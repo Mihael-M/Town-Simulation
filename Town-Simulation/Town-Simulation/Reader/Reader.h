@@ -1,20 +1,14 @@
-//
-//  Reader.h
-//  Town-Simulation
-//
-//  Created by Mishoni Mihaylov on 2.06.25.
-//
-
 #ifndef Reader_h
 #define Reader_h
 
 #include <string>
+#include "Simulation.h"
 
 class Reader{
 public:
     Reader(const std::string& fileName);
     
-    virtual void read() = 0;
+    virtual void read(Simulation* sim) = 0;
     
     virtual ~Reader() = default;
     

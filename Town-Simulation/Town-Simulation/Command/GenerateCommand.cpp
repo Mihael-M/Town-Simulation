@@ -19,7 +19,7 @@ void GenerateCommand::execute(const std::vector<std::string>& args)
         delete city;
     cityContext->set_city(new City(width, height));
     
-    sim->add_to_history(*city);
+    sim->add_to_history(*cityContext->get_city());
     
     std::time_t t = std::time(nullptr);
     std::tm* now = std::localtime(&t);

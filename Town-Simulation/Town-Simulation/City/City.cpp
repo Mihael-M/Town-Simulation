@@ -15,6 +15,10 @@ City::City(int width, int height) : width(width),height(height)
     generate_random_buildings();
 }
 
+City::City(int width, int height, std::vector<std::vector<Building*>>& grid) : width(width), height(height) {
+    this->grid = std::move(grid);
+}
+
 City::City(const City& other) : width(other.width), height(other.height)
 {
     copy_dynamic(other);
@@ -116,4 +120,16 @@ void City::copy_dynamic(const City& other)
             }
         }
     }
+}
+
+void City::save_city_to_file(std::ofstream& ofs) const
+{
+    ofs<<width<<height<<std::endl;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            grid[y][x]->save_building_to_file(ofs);
+        }
+    }
+
+    
 }

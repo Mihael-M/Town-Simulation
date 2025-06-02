@@ -35,6 +35,7 @@ public:
     
     void print_resident(const std::string& name) const;
     
+    void save_building_to_file(std::ofstream& ofs) const;
     
     size_t get_size() const;
     size_t get_capacity() const;

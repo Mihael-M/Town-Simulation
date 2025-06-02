@@ -1,8 +1,7 @@
-#include "City.h"
-#include "ResidentManager.h"
-#include "GenerateCommand.h"
+#include "SimulationApp.h"
 
 int main() {
-    
+    SimulationApp* simulation = SimulationApp::get_instance();
+    simulation->run();
     return 0;
 }

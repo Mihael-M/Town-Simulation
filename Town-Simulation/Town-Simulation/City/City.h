@@ -9,6 +9,8 @@ public:
         
     City(int width,int height);
     
+    City(int width, int height, std::vector<std::vector<Building*>>& grind);
+    
     City(const City& other);
     
     City& operator=(const City& other);
@@ -16,6 +18,8 @@ public:
     void add_building(int x, int y,Building* building);
     
     Building* get_building_at(int x, int y);
+    
+    void save_city_to_file(std::ofstream& ofs) const;
     
     int get_width() const;
     
