@@ -1,19 +1,11 @@
 #ifndef Resident_h
 #define Resident_h
 #include <vector>
-#include <fstream>
-#include "Profession.h"
-#include "Building.h"
-
-#include <vector>
 #include <cstdlib>
 #include <fstream>
 
+#include "Profession.h"
 
-
-
-
-class Profession;
 class Building;
 
 struct resident_info{
@@ -87,6 +79,8 @@ public:
     Resident(const Resident& other);
     
     Resident& operator=(const Resident& other);
+    
+    Resident(std::ifstream& is);
     
     void receive_salary();
     

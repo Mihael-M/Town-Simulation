@@ -24,6 +24,39 @@ City::City(const City& other) : width(other.width), height(other.height)
     copy_dynamic(other);
 }
 
+City::City(std::ifstream& ifs)
+{
+    if (!(ifs >> width >> height)) {
+        throw std::runtime_error("Failed to read city dimensions");
+    }
+    grid.resize(height, std::vector<Building*>(width, nullptr));
+
+    BuildingFactory* factory = BuildingFactory::get_factory();
+    LocationFactory locFactory(width, height);
+    std::string line;
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                if (grid[y][x] == nullptr) {
+                    std::getline(ifs, line);
+                    if (line.empty()) std::getline(ifs, line);
+                    
+                    BuildingType type;
+                    if (line == "Modern") type = BuildingType::Modern;
+                    else if (line == "PanelBlock") type = BuildingType::PanelBlock;
+                    else if (line == "Dormitory") type = BuildingType::Dormitory;
+                    else throw std::runtime_error("Unknown building type: " + line);
+                    
+                    Location* loc = locFactory.create_location(x, y);
+                    Building* building = factory->create_building(type, loc);
+                    int count, capacity;
+                    ifs >> count >>capacity;
+                    building->load_residents_from_file(ifs,count,capacity);
+                    grid[y][x] = building;
+                }
+        }
+    }
+}
+
 City& City::operator=(const City& other)
 {
     if(this != &other)
@@ -124,7 +157,7 @@ void City::copy_dynamic(const City& other)
 
 void City::save_city_to_file(std::ofstream& ofs) const
 {
-    ofs<<width<<height<<std::endl;
+    ofs<<width<<" "<<height<<std::endl;
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             grid[y][x]->save_building_to_file(ofs);

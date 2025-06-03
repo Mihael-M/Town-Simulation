@@ -21,6 +21,7 @@ public:
     
     void save_simulation_to_file(std::ofstream& ofs) const;
 
+    void load_simulation_from_file(std::ifstream& ifs);
 private:
     bool is_new_month();
     

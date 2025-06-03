@@ -23,7 +23,13 @@ void CommandProcessor::process_command(std::string& input)
     for(int i = 0; i < commands.size(); i++)
     {
         if(name == commands[i].name && args.size() == commands[i].argCount){
-            commands[i].command->execute(args);
+            try{
+                commands[i].command->execute(args);
+            }
+            catch(std::exception& ex)
+            {
+                std::cout<<"Error with input: " << ex.what() << std::endl;
+            }
             return;
         }
     }

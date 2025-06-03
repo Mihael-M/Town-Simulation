@@ -82,15 +82,24 @@ void SimulationApp::run()
     do{
         std::cout << "> ";
         std::getline(std::cin, input);
-        
-        processor->process_command(input);
-        
+        if(input == "End")
+        {
+            std::cout << "Exiting simulation. Goodbye!" << std::endl;
+            break;
+        }
+        try{
+            processor->process_command(input);
+        }
+        catch(std::runtime_error& error)
+        {
+            std::cout<<error.what()<<std::endl;
+        }
         std::cout<<std::endl;
-        std::cout << "=== Menu ===\n";
-        //menu();
+        std::cout << "=== Input ===\n";
+        std::cout<<std::endl;
     }
-    while(input != "End");
-    std::cout << "Exiting simulation. Goodbye!" << std::endl;
+    while(true);
+   
 }
 
 void SimulationApp::free_dynamic()

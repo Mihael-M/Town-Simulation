@@ -68,6 +68,8 @@ int Simulation::simulate_days(int n)
 void Simulation::print_status(std::ostream& os) const {
     CityContext* context = CityContext::get_instance();
     City* city = context->get_city();
+    if(!city)
+        throw std::runtime_error("City not created!");
     
     for (int i = 0; i < city->get_height(); i++) {
         for (int j = 0; j < city->get_width(); j++) {
@@ -91,6 +93,23 @@ void Simulation::update_day()
 
 void Simulation::save_simulation_to_file(std::ofstream& ofs) const
 {
+    ofs<<history.size()<<std::endl;
     for(int i = 0; i < history.size(); i++)
         history[i].save_city_to_file(ofs);
+}
+
+void Simulation::load_simulation_from_file(std::ifstream& ifs){
+    if (!history.empty()) {
+        history.clear();
+    }
+    std::string line;
+    CityContext* context = CityContext::get_instance();
+    int size;
+    ifs>>size;
+    
+    for(int i = 0; i < size; i++){
+            City* city = new City(ifs);
+            context->set_city(city);
+            history.push_back(*city);
+    }
 }

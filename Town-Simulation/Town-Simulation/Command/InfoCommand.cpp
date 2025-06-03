@@ -8,7 +8,12 @@ void InfoCommand::execute(const std::vector<std::string>& args)
 {
     if(args.size() != Constants::INFO_ARGUMENTS)
         throw std::invalid_argument("Wrong arguments for info!");
-    
-    sim->print_status(std::cout);
+    try{
+        sim->print_status(std::cout);
+    }
+    catch(std::exception& ex)
+    {
+        std::cout<<"Error from info: " << ex.what() << std::endl;
+    }
 }
 

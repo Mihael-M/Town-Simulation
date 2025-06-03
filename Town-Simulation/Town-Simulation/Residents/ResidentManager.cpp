@@ -2,6 +2,7 @@
 #include "ResidentManager.h"
 #include "Building.h"
 #include "City.h"
+#include <iostream>
 
 void ResidentManager::addResident(City* city, int x, int y, Resident* resident)
 {
@@ -18,8 +19,9 @@ void ResidentManager::removeResident(City* city, int x, int y, const std::string
     if (x < 0 || y < 0 || x >= city->get_width() || y >= city->get_height()) {
         return;
     }
-    Building* building = city->get_building_at(x, y);
-    if (building) {
-        building->remove_resident(name);
-    }
+    
+        Building* building = city->get_building_at(x, y);
+        if (building) {
+            building->remove_resident(name);
+        }
 }

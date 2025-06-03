@@ -11,6 +11,7 @@ Building::Building(const BuildingType type, Location* loc, size_t capacity) : ty
     generate_random_residents();
 }
 
+
 void Building::add_resident(Resident *resident){
     if (is_full())
         throw std::overflow_error("The building can not hold any more residents!");
@@ -157,7 +158,44 @@ void Building::print_resident(const std::string& name) const
 
 void Building::save_building_to_file(std::ofstream& ofs) const
 {
-    print_building(ofs);
+    switch (type)
+    {
+        case BuildingType::Modern:
+            ofs << "Modern" << std::endl;
+            break;
+        case BuildingType::PanelBlock:
+            ofs << "PanelBlock" << std::endl;
+            break;
+        case BuildingType::Dormitory:
+            ofs << "Dormitory" << std::endl;
+            break;
+        default:
+            ofs << "Unknown type" << std::endl;
+            break;
+    }
+    ofs<<residents.size()<< " "<< residents.capacity() <<std::endl;
     for(int i = 0; i < residents.size(); i++)
         residents[i]->save_to_file(ofs);
+}
+
+void Building::load_residents_from_file(std::ifstream& ifs,int count, int capacity)
+{
+    free_dynamic();
+    residents.clear();
+    residents.reserve(capacity);
+    
+   
+    while(count != 0)
+    {
+        try{
+            Resident* res = new Resident(ifs);
+            residents.push_back(res);
+            count--;
+        }
+        catch(const std::exception& ex)
+        {
+            std::cout<<"Error loading a resident from file!" << ex.what() <<std::endl;
+            break;
+        }
+    }
 }

@@ -15,6 +15,8 @@ public:
     
     City& operator=(const City& other);
     
+    City(std::ifstream& ifs);
+    
     void add_building(int x, int y,Building* building);
     
     Building* get_building_at(int x, int y);

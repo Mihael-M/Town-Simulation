@@ -8,7 +8,13 @@ void SaveCommand::execute(const std::vector<std::string>& args)
 {
     if(args.size() != Constants::SAVE_ARGUMENTS)
         throw std::invalid_argument("Not enough information to save simulation!");
-    std::string fileName = args[0];
-    TxtWriter writer(fileName);
-    writer.write(sim);
+    try{
+        std::string fileName = args[0];
+        TxtWriter writer(fileName);
+        writer.write(sim);
+    }
+    catch(std::runtime_error& error)
+    {
+        std::cout<<"Error with file: " << error.what() << std::endl;
+    }
 }

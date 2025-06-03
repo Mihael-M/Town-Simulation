@@ -37,6 +37,8 @@ public:
     
     void save_building_to_file(std::ofstream& ofs) const;
     
+    void load_residents_from_file(std::ifstream& ifs, int size, int capacity);
+    
     size_t get_size() const;
     size_t get_capacity() const;
     bool is_empty() const;
@@ -48,8 +50,8 @@ protected:
     
     std::vector<Resident*> residents;
     
-    
     BuildingType type;
+    
     Location* loc;
     
 private:

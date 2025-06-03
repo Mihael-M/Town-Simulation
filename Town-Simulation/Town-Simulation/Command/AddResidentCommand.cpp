@@ -37,8 +37,13 @@ void AddResidentCommand::execute(const std::vector<std::string> & args)
     Profession* profession = factory->create_profession(professionType);
     
     Resident* resident = new Resident(name, info, profession);
-    
-    manager->addResident(city, x, y, resident);
-    
-    std::cout<<"Resident added successfully."<<std::endl;
+    try{
+        manager->addResident(city, x, y, resident);
+        
+        std::cout<<"Resident added successfully."<<std::endl;
+    }
+    catch(std::exception& ex)
+    {
+        std::cout<<"Error adding the  resident from: " << ex.what() << std::endl;
+    }
 }

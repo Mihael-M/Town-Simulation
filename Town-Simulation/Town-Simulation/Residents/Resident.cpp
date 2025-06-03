@@ -1,10 +1,37 @@
 #include <stdio.h>
 #include "Resident.h"
+#include "Building.h"
 #include <iostream>
 #include <stdexcept>
 #include "ProfessionFactory.h"
 
 ResidentSnapshot::ResidentSnapshot(const Resident& res) : name(res.get_name()), profession(res.get_profession()), info(res.get_resident_info()) {}
+
+Resident::Resident(std::ifstream& is){
+    std::string name, professionType;
+    std::getline(is, name);
+    if (!std::getline(is, name)) throw std::runtime_error("Failed to read resident name");
+    this->name = name;
+
+    if (!std::getline(is, professionType)) throw std::runtime_error("Failed to read resident profession");
+       
+    ProfessionFactory* factory = ProfessionFactory::get_factory();
+    profession = factory->create_profession(professionType);
+    if (!profession) throw std::runtime_error("Invalid profession type");
+
+    int happiness, lifePoints;
+    double money;
+
+    if (!(is >> happiness)) throw std::runtime_error("Failed to read happiness");
+    if (!(is >> money)) throw std::runtime_error("Failed to read money");
+    if (!(is >> lifePoints)) throw std::runtime_error("Failed to read life points");
+       
+    info.set_happiness(happiness);
+    info.set_money(money);
+    info.set_life_points(lifePoints);
+    
+    history.record_snapshot(*this);
+}
 
 void ResidentSnapshot::save_snapshot_to_file(std::ofstream& ofs) const
 {
@@ -153,8 +180,8 @@ void Resident::print_info(std::ostream& os) const
 
 void Resident::save_to_file(std::ofstream& ofs) const
 {
-    ofs<<name;
-    ofs<<profession->get_type();
+    ofs<<name<<std::endl;
+    ofs<<profession->get_type()<<std::endl;
     info.save_info_to_file(ofs);
     history.save_history_to_file(ofs);
 }

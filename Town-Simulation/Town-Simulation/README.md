@@ -1,7 +1,6 @@
-implement the logic for loading from file
+implement date logic ???? under process
 
-implement date logic
-
-handle exceptions!!
+handle exceptions!! most could be better
 
 
+the exceptions for input is not needed
