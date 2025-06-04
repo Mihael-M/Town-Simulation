@@ -2,6 +2,7 @@
 #define Constants_hpp
 
 #include <stdio.h>
+#include <vector>
 
 namespace Constants {
 static constexpr int MAX_NUMBER_TYPES = 10;
@@ -46,6 +47,14 @@ static constexpr int LOAD_ARGUMENTS = 1;
 static constexpr int GENERATE_CITY_ARGUMENTS = 2;
 
 static constexpr int BUILDING_TYPES = 3;
+
+static std::vector<std::string> professionNames = {
+    "Teacher", "Programmer", "Miner", "Unemployed"
+};
+
+static std::vector<std::string> names = {
+    "Bobby", "Kevin", "Olq", "Petq", "Kosta", "Trump", "Viktor", "Elena", "Zhozko", "Icaka" , "Ivan", "Georgi", "Aleks" , "Dimitur" , "Stanislav"
+};
 }
 
 #endif /* Constants_hpp */

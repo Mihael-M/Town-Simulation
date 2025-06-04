@@ -7,8 +7,6 @@ RemoveResidentCommand::RemoveResidentCommand(ResidentManager* manager) : manager
 
 void RemoveResidentCommand::execute(const std::vector<std::string>& args)
 {
-    if (args.size() != Constants::REMOVE_RESIDENT_ARGUMENTS)
-        throw std::invalid_argument("Not enough information to remove a resident!");
     
     CityContext* context = CityContext::get_instance();
     City* city = context->get_city();

@@ -5,8 +5,6 @@
 
 void ResidentInfoCommand::execute(const std::vector<std::string>& args)
 {
-    if(args.size() != Constants::RESIDENT_INFO_ARGUMENTS)
-        throw std::invalid_argument("Not enough information to get a resident!");
     
         CityContext* context = CityContext::get_instance();
         City* city = context->get_city();

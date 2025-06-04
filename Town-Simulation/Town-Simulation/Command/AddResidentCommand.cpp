@@ -8,9 +8,6 @@ AddResidentCommand::AddResidentCommand(ResidentManager* manager) : manager(manag
 
 void AddResidentCommand::execute(const std::vector<std::string> & args)
 {
-    if (args.size() != Constants::ADD_RESIDENT_ARGUMENTS)
-        throw std::invalid_argument("Not enough information to add a resident!");
-    
     ProfessionFactory* factory = ProfessionFactory::get_factory();
     CityContext* context = CityContext::get_instance();
     City* city = context->get_city();

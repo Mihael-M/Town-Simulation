@@ -6,8 +6,6 @@ GenerateCommand::GenerateCommand(Simulation* sim) : sim(sim) {}
 
 void GenerateCommand::execute(const std::vector<std::string>& args)
 {
-    if(args.size() != Constants::GENERATE_CITY_ARGUMENTS)
-        throw std::invalid_argument("Not enough information for generate command!");
     CityContext* cityContext = CityContext::get_instance();
     
     City* city = cityContext->get_city();

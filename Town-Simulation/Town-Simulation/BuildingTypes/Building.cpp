@@ -106,14 +106,15 @@ void Building::print_residents(std::ostream& os) const
 {
     for(int i = 0; i < residents.size(); i++)
     {
-        os<< i << ": " << residents[i]->get_name() << std::endl;
+        os<< "           ";
+        os<< residents[i]->get_name() << std::endl;
         residents[i]->print_info(os);
     }
 }
 
 void Building::print_building(std::ostream& os) const
 {
-    os << "Type: ";
+    os << "        ";
     switch (type)
     {
         case BuildingType::Modern:
@@ -129,6 +130,7 @@ void Building::print_building(std::ostream& os) const
             os << "Unknown type" << std::endl;
             break;
     }
+    os << "        ";
     switch (loc->get_type())
     {
         case LocationType::Central:

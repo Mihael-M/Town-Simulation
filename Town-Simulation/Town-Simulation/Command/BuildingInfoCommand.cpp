@@ -5,8 +5,6 @@
 
 void BuildingInfoCommand::execute(const std::vector<std::string>& args)
 {
-    if(args.size() != Constants::BUILDING_INFO_ARGUMENTS)
-        throw std::invalid_argument("Not enough information for building information!");
     CityContext* context = CityContext::get_instance();
     City* city = context->get_city();
     if(!context->city_exists())

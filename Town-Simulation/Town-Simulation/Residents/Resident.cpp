@@ -75,13 +75,7 @@ void ResidentHistory::save_history_to_file(std::ofstream& ofs) const
 
 
 
-static std::vector<std::string> professionNames = {
-    "Teacher", "Programmer", "Miner", "Unemployed"
-};
 
-static std::vector<std::string> names = {
-    "Bobby", "Kevin", "Olq", "Petq", "Kosta", "Trump", "Viktor", "Elena"
-};
 
 void Resident::free_dynamic(){
     delete profession;
@@ -172,10 +166,10 @@ void Resident::live_day(bool isFirstDayOfMonth, int currentDay, Building* buildi
 
 void Resident::print_info(std::ostream& os) const
 {
-    os<< "Profession: " << profession->get_type() << std::endl;
-    os << "Happiness: " << info.get_happiness() << std::endl;
-    os<<"Money: " << info.get_money() << std::endl;
-    os<<"Life: " << info.get_life_points() << std::endl;
+    os<< "                "<< "Profession: " << profession->get_type() << std::endl;
+    os << "                "<< "Happiness: " << info.get_happiness() << std::endl;
+    os<< "                "<< "Money: " << info.get_money() << std::endl;
+    os<< "                "<< "Life: " << info.get_life_points() << std::endl;
 }
 
 void Resident::save_to_file(std::ofstream& ofs) const
@@ -198,15 +192,15 @@ Profession* Resident::generate_random_profession()
 {
     ProfessionFactory* factory = ProfessionFactory::get_factory();
     
-    int type = std::rand() % professionNames.size();
+    int type = std::rand() % Constants::professionNames.size();
     
-    return factory->create_profession(professionNames[type]);
+    return factory->create_profession(Constants::professionNames[type]);
 }
 
 std::string Resident::generate_random_name()
 {
-    int index = std::rand() % names.size();
-    return names[index];
+    int index = std::rand() % Constants::names.size();
+    return Constants::names[index];
 }
 
 resident_info* Resident::generate_random_resident_info()
@@ -222,9 +216,6 @@ void Resident::print_history(std::ostream& os) const
         history.get_history()[i].print_history(os);
     }
 }
-
-
-
 
 Profession* Resident::get_profession() const
 {

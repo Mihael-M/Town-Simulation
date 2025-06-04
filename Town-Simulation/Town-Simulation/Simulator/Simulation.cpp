@@ -74,7 +74,7 @@ void Simulation::print_status(std::ostream& os) const {
     for (int i = 0; i < city->get_height(); i++) {
         for (int j = 0; j < city->get_width(); j++) {
             Building* building = city->get_building_at(i, j);
-            os<<"Location " << i << " " << j << ": ";
+            os<<"Location " << i << " " << j << ": " << std::endl;
             building->print_building(os);
             building->print_residents(os);
         }

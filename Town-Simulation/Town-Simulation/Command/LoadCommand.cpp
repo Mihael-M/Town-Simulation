@@ -5,8 +5,6 @@ LoadCommand::LoadCommand(Simulation* sim) : sim(sim) {}
 
 void LoadCommand::execute(const std::vector<std::string>& args)
 {
-    if(args.size() != Constants::LOAD_ARGUMENTS)
-        throw std::invalid_argument("Not enough information to load simulation!");
     try {
         std::string fileName = args[0];
         TxtReader reader(fileName);
