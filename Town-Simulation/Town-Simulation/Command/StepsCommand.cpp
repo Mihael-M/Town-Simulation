@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdexcept>
+#include "StepsCommand.h"
+
+
+StepsCommand::StepsCommand(Simulation* sim) : sim(sim) {}
+
+void StepsCommand::execute(const std::vector<std::string>& args)
+{
+    int steps = std::atoi(args[0].c_str());
+    try{
+        std::cout<< sim->simulate_days(steps) << std::endl;
+    }
+    catch(std::exception& ex)
+    {
+        std::cout<<"Error steps from: " << ex.what() << std::endl;
+    }
+}
