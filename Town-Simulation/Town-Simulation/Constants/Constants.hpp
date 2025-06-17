@@ -53,7 +53,7 @@ static std::vector<std::string> professionNames = {
 };
 
 static std::vector<std::string> names = {
-    "Bobby", "Kevin", "Olq", "Petq", "Kosta", "Trump", "Viktor", "Elena", "Zhozko", "Icaka" , "Ivan", "Georgi", "Aleks" , "Dimitur" , "Stanislav"
+    "Bobby", "Kevin", "Olq", "Petq", "Kosta", "Trump", "Viktor", "Elena", "Zhozko", "Icaka" , "Ivan", "Georgi", "Aleks" , "Dimitur" , "Stanislav", "Marti"
 };
 }
 

@@ -11,6 +11,8 @@ CityContext* CityContext::get_instance()
 
 void CityContext::set_city(City* city)
 {
+    if(theCity)
+        free_city();
     CityContext::theCity = city;
 }
 
@@ -22,4 +24,9 @@ City* CityContext::get_city() const
 bool CityContext::city_exists() const
 {
     return theCity != nullptr;
+}
+
+void CityContext::free_city()
+{
+    delete theCity;
 }

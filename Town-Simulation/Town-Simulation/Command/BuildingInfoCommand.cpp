@@ -12,8 +12,8 @@ void BuildingInfoCommand::execute(const std::vector<std::string>& args)
     
     int x = std::atoi(args[0].c_str());
     int y = std::atoi(args[1].c_str());
-    
-    Building* building = city->get_building_at(x, y);
+    Coordinates coords(x, y);
+    Building* building = city->get_building_at(coords);
     if(!building)
         throw std::runtime_error("Building does noe exist!");
     building->print_residents(std::cout);

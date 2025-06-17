@@ -8,7 +8,6 @@
 Building::Building(const BuildingType type, Location* loc, size_t capacity) : type(type){
     this->loc = loc->clone();
     residents.reserve(capacity);
-    generate_random_residents();
 }
 
 
@@ -21,12 +20,11 @@ void Building::add_resident(Resident *resident){
 
 void Building::remove_resident(const std::string &name) {
     for (size_t i = 0; i < residents.size(); ++i) {
-        if (residents[i] && residents[i]->get_name() == name) {
-            delete residents[i];
-            residents.erase(residents.begin() + i);
-            return;
-        }
-    }
+           if (residents[i] && residents[i]->get_name() == name) {
+               residents.erase(residents.begin() + i);
+               return;
+           }
+       }
     throw std::runtime_error("No resident with that name found in this building!");
 }
 
@@ -36,9 +34,7 @@ std::vector<Resident*> Building::get_residents() const{
 
 
 void Building::free_dynamic(){
-    for(int i = 0;i < residents.size(); i++)
-            delete residents[i];
-    
+    delete loc;
 }
 
 Building::~Building(){
@@ -93,15 +89,6 @@ size_t Building::generate_number_residents()
     return Constants::DEFAULT_INITIAL_RESIDENTS + (std::rand() % (Constants::MAX_INITIAL_RESIDENTS - Constants::DEFAULT_INITIAL_RESIDENTS + 1));
 }
 
-void Building::generate_random_residents()
-{
-    int numberOfResidents = std::rand() % get_capacity() - 1;
-    for(int i = 0; i < numberOfResidents; i++)
-    {
-        residents.push_back(new Resident());
-    }
-}
-
 void Building::print_residents(std::ostream& os) const
 {
     for(int i = 0; i < residents.size(); i++)
@@ -145,19 +132,6 @@ void Building::print_building(std::ostream& os) const
     }
 }
 
-void Building::print_resident(const std::string& name) const
-{
-    for(int i = 0; i < residents.size(); i++)
-    {
-        if(residents[i]->get_name() == name){
-            std::cout<<residents[i]->get_name() << std::endl;
-            residents[i]->print_info(std::cout);
-            std::cout<<"History: "<<std::endl;
-            residents[i]->print_history(std::cout);
-        }
-    }
-}
-
 void Building::save_building_to_file(std::ofstream& ofs) const
 {
     switch (type)
@@ -175,29 +149,11 @@ void Building::save_building_to_file(std::ofstream& ofs) const
             ofs << "Unknown type" << std::endl;
             break;
     }
-    ofs<<residents.size()<< " "<< residents.capacity() <<std::endl;
-    for(int i = 0; i < residents.size(); i++)
-        residents[i]->save_to_file(ofs);
+    ofs<< residents.capacity() <<std::endl;
 }
 
-void Building::load_residents_from_file(std::ifstream& ifs,int count, int capacity)
+void Building::load_residents_from_file(std::ifstream& ifs, int capacity)
 {
-    free_dynamic();
     residents.clear();
     residents.reserve(capacity);
-    
-   
-    while(count != 0)
-    {
-        try{
-            Resident* res = new Resident(ifs);
-            residents.push_back(res);
-            count--;
-        }
-        catch(const std::exception& ex)
-        {
-            std::cout<<"Error loading a resident from file!" << ex.what() <<std::endl;
-            break;
-        }
-    }
 }

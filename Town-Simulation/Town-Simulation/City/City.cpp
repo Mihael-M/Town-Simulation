@@ -48,9 +48,9 @@ City::City(std::ifstream& ifs)
                     
                     Location* loc = locFactory.create_location(x, y);
                     Building* building = factory->create_building(type, loc);
-                    int count, capacity;
-                    ifs >> count >>capacity;
-                    building->load_residents_from_file(ifs,count,capacity);
+                    int capacity;
+                    ifs >>capacity;
+                    building->load_residents_from_file(ifs,capacity);
                     grid[y][x] = building;
                 }
         }
@@ -88,23 +88,23 @@ void City::generate_random_buildings()
             
             Building* newBuilding = factory->create_building(buildingType, generate_random_location(x, y));
             
-            add_building(x, y, newBuilding);
+            Coordinates coords(x, y);
+            
+            add_building(coords, newBuilding);
         }
     }
 }
 
 
 
-void City::add_building(int x, int y,Building *building)
+void City::add_building(const Coordinates& coordinates,Building *building)
 {
-    if(x < 0 || y < 0 || x >= width || y >= height)
+    if(coordinates.get_x() < 0 || coordinates.get_y() < 0 || coordinates.get_x() >= width || coordinates.get_y() >= height)
     {
         throw std::invalid_argument("Wrong building information, can't be added!");
     }
-    if(grid[x][y] != nullptr)
-        return;
     
-    grid[x][y] = building;
+    grid[coordinates.get_x()][coordinates.get_y()] = building;
 }
 
 void City::free_dynamic() {
@@ -117,12 +117,12 @@ void City::free_dynamic() {
     }
 }
 
-Building* City::get_building_at(int x, int y)
+Building* City::get_building_at(const Coordinates& corrdinates)
 {
-    if(x < 0 || y < 0 || x > width || y > height || grid[x][y] == nullptr)
+    if(corrdinates.get_x() < 0 || corrdinates.get_y() < 0 || corrdinates.get_x() > width || corrdinates.get_y() > height || grid[corrdinates.get_x()][corrdinates.get_y()] == nullptr)
         throw std::invalid_argument("Invalid position for building.");
     
-    return grid[x][y];
+    return grid[corrdinates.get_x()][corrdinates.get_y()];
 }
 
 int City::get_width() const

@@ -33,11 +33,9 @@ public:
     
     void print_building(std::ostream& os) const;
     
-    void print_resident(const std::string& name) const;
-    
     void save_building_to_file(std::ofstream& ofs) const;
     
-    void load_residents_from_file(std::ifstream& ifs, int size, int capacity);
+    void load_residents_from_file(std::ifstream& ifs, int capacity);
     
     size_t get_size() const;
     size_t get_capacity() const;
@@ -47,7 +45,6 @@ public:
     virtual ~Building();
     
 protected:
-    
     std::vector<Resident*> residents;
     
     BuildingType type;
@@ -58,8 +55,6 @@ private:
     void copy_dynamic(const Building& other);
     
     static size_t generate_number_residents();
-    
-    void generate_random_residents();
     
     void free_dynamic();
 };

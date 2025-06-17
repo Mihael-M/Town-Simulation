@@ -5,26 +5,59 @@
 #include <fstream>
 
 #include "Profession.h"
+#include "Coordinates.h"
 
 class Building;
 
+enum class RemovalCause {
+    None,
+    Died,
+    RemovedManually
+};
+
 struct resident_info{
 private:
+    
+   
+    
     int happiness;
     double money;
     int life_points;
     
-    static double generate_random_info();
-
+    unsigned born;
     
+    int removalDay = -1;
+    
+    Coordinates coordinates;
+    
+    RemovalCause removalCause = RemovalCause::None;
+    
+    static double generate_random_info();
+    
+    void save_removal_Cause(std::ofstream& ofs) const;
+
 public:
-    resident_info(int happiness = generate_random_info(), double money = generate_random_info(), int life_points = generate_random_info());
+    resident_info(const Coordinates& coordinates = Coordinates(), unsigned born = 0, int happiness = generate_random_info(), double money = generate_random_info(), int life_points = generate_random_info());
+    
+    resident_info(std::ifstream& ifs);
+    
+    void set_removal_day(int day);
+    
+    int get_removal_day() const;
+    
+    void set_cause(const RemovalCause& cause);
+    
+    RemovalCause get_cause() const;
+    
+    void set_born(unsigned day);
     
     void set_happiness(int happiness);
     
     void set_life_points(int life_points);
 
     void set_money(double money);
+    
+    unsigned get_born() const;
 
     int get_happiness() const;
 
@@ -34,47 +67,18 @@ public:
     
     void save_info_to_file(std::ofstream& ofs) const;
     
-};
-
-class ResidentSnapshot{
-public:
-    ResidentSnapshot(const Resident& res);
+    void load_info_from_file(std::ifstream& ifs);
     
-    void save_snapshot_to_file(std::ofstream& ofs) const;
+    bool is_alive() const;
     
-    void print_history(std::ostream& os) const;
+    const Coordinates& get_coordinates() const;
     
-private:
-    std::string name;
-    
-    Profession* profession;
-    
-    Building* building;
-    
-    resident_info info;
-};
-
-class ResidentHistory {
-public:
-    
-    const std::vector<ResidentSnapshot>& get_history() const;
-    
-    void record_snapshot(const Resident& res);
-    
-    size_t get_size() const;
-    
-    void save_history_to_file(std::ofstream& ofs) const;
-    
-private:
-    std::vector<ResidentSnapshot> history;
-    int x;
-    int y;
 };
 
 
 class Resident{
 public:
-    Resident(const std::string& name = generate_random_name(), const resident_info& info = *generate_random_resident_info() ,Profession* job = generate_random_profession());
+    Resident(resident_info* info = generate_random_resident_info() ,const std::string& name = generate_random_name(), Profession* job = generate_random_profession());
         
     Resident(const Resident& other);
     
@@ -86,17 +90,19 @@ public:
     
     void print_info(std::ostream& os) const;
     
-    void print_history(std::ostream& os) const;
-    
     const std::string& get_name() const;
     
     void live_day(bool isFirstDayOfMonth, int currentDay, Building* building);
-    
-    const ResidentHistory& get_history() const;
         
-    resident_info get_resident_info() const;
+    resident_info* get_resident_info() const;
     
     Profession* get_profession() const;
+    
+    void set_name(const std::string& name);
+    
+    void set_profession(Profession* profession);
+    
+    void set_resident_info(resident_info* info);
     
     void save_to_file(std::ofstream& ofs) const;
     
@@ -118,14 +124,47 @@ private:
     
     static resident_info* generate_random_resident_info();
     
+    void load_resident_from_file(std::ifstream& ifs);
     
+    
+    
+public:
+    class ResidentMemento{
+    private:
+        friend class Resident;
+        std::string name;
+        
+        Profession* profession;
+        
+        resident_info* info;
+        
+        void load_memento_from_file(std::ifstream& ifs);
+
+        ResidentMemento(const std::string& name, Profession* profession, resident_info* info);
+        
+        ResidentMemento(std::ifstream& ifs);
+    public:
+        
+        const std::string& get_name() const;
+        
+        Profession* get_profession() const;
+        
+        resident_info* get_info() const;
+        
+    };
+    
+    ResidentMemento* load_memento_from_file(std::ifstream& ifs);
+    
+    ResidentMemento* take_snapshot();
+    
+    void restore(ResidentMemento* memento);
+    
+private:
     std::string name;
     
     Profession* profession;
     
-    resident_info info;
-    
-    ResidentHistory history;
+    resident_info* info;
 };
 
 

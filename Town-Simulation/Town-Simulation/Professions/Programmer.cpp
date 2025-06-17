@@ -11,8 +11,8 @@ int Programmer::get_salary() const{
 }
 
 void Programmer::monthly_update(Resident& resident){
-    resident_info info = resident.get_resident_info();
-    info.set_happiness(std::max(info.get_happiness() - 1, 0));
+    resident_info* info = resident.get_resident_info();
+    info->set_happiness(std::max(info->get_happiness() - 1, 0));
 }
 
 Profession* Programmer::clone() const{

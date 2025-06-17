@@ -7,9 +7,17 @@ class Date {
 public:
     Date();
 
-    std::string get_current_date();
+    std::string get_current_date() const;
+    
+    int get_day() const;
+    
+    int get_month() const;
+    
+    void increment_day();
 
-    bool update_and_check_month_change();
+    bool check_month_change();
+    
+    void decrement_day();
 
 private:
     int year;
