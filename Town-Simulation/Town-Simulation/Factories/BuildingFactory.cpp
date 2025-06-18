@@ -38,3 +38,17 @@ const BuildingCreator* BuildingFactory::get_creator(BuildingType type) const
 
     return nullptr;
 }
+
+void BuildingFactory::delete_creators()
+{
+    for(int i = 0;i < Constants::MAX_NUMBER_TYPES;i++)
+    {
+        delete creators[i];
+    }
+}
+
+BuildingFactory::~BuildingFactory()
+{
+    delete_creators();
+    //TODO: check if i have to delete the instance of the factory manually?
+}

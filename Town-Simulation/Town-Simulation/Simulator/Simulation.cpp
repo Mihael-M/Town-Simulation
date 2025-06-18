@@ -4,41 +4,93 @@
 #include <iostream>
 
 
-Simulation::Simulation(int currentDay, ResidentManager* manager) : manager(manager), currentDay(currentDay) {}
+Simulation::Simulation(ResidentManager* manager) : manager(manager){
+    date = Date();
+    initial_date = date;
+}
+
+bool Simulation::check_to_stop()const
+{
+    return  date.get_day() <= initial_date.get_day() && are_in_the_same_month();
+}
+
+bool Simulation::are_in_the_same_month() const
+{
+    return date.get_month() == initial_date.get_month();
+}
+
+bool Simulation::check_to_remove(std::vector<ResidentEditor>& residents, size_t index) const
+{
+    return residents[index].get_resident()->get_resident_info()->get_money() <= 0 && residents[index].get_resident()->get_resident_info()->get_happiness() <= 0 && residents[index].get_resident()->get_resident_info()->get_life_points() <= 0;
+}
 
 int Simulation::simulate_day() {
     CityContext* context = CityContext::get_instance();
     City* city = context->get_city();
     if(!city)
         throw std::runtime_error("City not created!");
-    int res = 0;
-    currentDay++;
-    if(is_new_month())
-        update_day();
-    for (int i = 0; i < city->get_height(); i++) {
-        for (int j = 0; j < city->get_width(); j++) {
-            Building* building = city->get_building_at(i, j);
-            
-            std::vector<Resident*> residents = building->get_residents();
-            for(int z = 0; z < residents.size(); z++)
-            {
-                if(residents[z]->get_resident_info().get_money() <= 0 && residents[z]->get_resident_info().get_happiness() <= 0 && residents[z]->get_resident_info().get_life_points() <= 0)
-                {
-                    manager->removeResident(city, i, j, residents[z]->get_name());
-                    res++;
-                }
-                residents[z]->live_day(currentDay == 1, currentDay, building);
-            }
-            
+    int removedResidents = 0;
+    
+    date.increment_day();
+    
+    std::vector<ResidentEditor>& residents = manager->get_residents();
+    
+    unsigned currentDay = date.get_day();
+    for(int z = 0; z < residents.size(); z++){
+        
+        Resident* res = residents[z].get_resident();
+        unsigned bornDay = res->get_resident_info()->get_born();
+        int removalDay = res->get_resident_info()->get_removal_day();
+        
+        manager->forward(date.check_month_change(), currentDay, city, z);
+        
+        if (currentDay == bornDay && res->get_resident_info()->get_cause() == RemovalCause::RemovedManually && res->get_resident_info()->is_alive())
+            manager->remove_resident(z, city, res->get_name());
+        
+        else if(currentDay == removalDay)
+            manager->bring_back(city, z);
+        
+        if(check_to_remove(residents, z))
+        {
+            manager->remove_resident(city, res->get_name(), currentDay,z);
+            removedResidents++;
         }
+        
     }
-    add_to_history(*city);
-    return res;
+    return removedResidents;
 }
 
-void Simulation::add_to_history(const City& city)
+
+void Simulation::back_steps(int n)
 {
-    history.push_back(city);
+    CityContext* context = CityContext::get_instance();
+    City* city = context->get_city();
+    if(!city)
+        throw std::runtime_error("City not created!");
+    int targetDays = -n;
+    for (int i = 0; i < targetDays; ++i) {
+        unsigned currentDay = date.get_day();
+        if (check_to_stop())
+            break;
+        
+        std::vector<ResidentEditor>& residents = manager->get_residents();
+
+        for (int j = 0; j < residents.size(); ++j) {
+            Resident* res = residents[j].get_resident();
+            unsigned bornDay = res->get_resident_info()->get_born();
+            int removalDay = res->get_resident_info()->get_removal_day();
+
+            residents[j].go_back();
+
+            if (currentDay < bornDay && res->get_resident_info()->get_cause() == RemovalCause::None && are_in_the_same_month()) {
+                manager->remove_resident(city, res->get_name(),currentDay,j);
+            }
+            else if (removalDay == currentDay) {
+                manager->bring_back(city, j);
+            }
+        }
+        date.decrement_day();
+    }
 }
 
 
@@ -51,17 +103,9 @@ int Simulation::simulate_days(int n)
             n--;
         }
         return peopleRemoved;
-    }
-    else {
-        for (int i = 0; i < -n && history.size() > 1; ++i) {
-            history.pop_back();
-            currentDay--;
-        }
-
-        CityContext* context = CityContext::get_instance();
-        City* city = context->get_city();
-        *city = history.back();
-        return peopleRemoved;
+    } else {
+        back_steps(n);
+        return 0;
     }
 }
 
@@ -73,7 +117,8 @@ void Simulation::print_status(std::ostream& os) const {
     
     for (int i = 0; i < city->get_height(); i++) {
         for (int j = 0; j < city->get_width(); j++) {
-            Building* building = city->get_building_at(i, j);
+            Coordinates coords(j, i);
+            Building* building = city->get_building_at(coords);
             os<<"Location " << i << " " << j << ": " << std::endl;
             building->print_building(os);
             building->print_residents(os);
@@ -81,35 +126,38 @@ void Simulation::print_status(std::ostream& os) const {
     }
 }
 
-bool Simulation::is_new_month()
+unsigned Simulation::get_current_day() const
 {
-    return currentDay == 30;
+    return date.get_day();
 }
 
-void Simulation::update_day()
-{
-    currentDay = 1;
-}
 
 void Simulation::save_simulation_to_file(std::ofstream& ofs) const
 {
-    ofs<<history.size()<<std::endl;
-    for(int i = 0; i < history.size(); i++)
-        history[i].save_city_to_file(ofs);
+    CityContext* context = CityContext::get_instance();
+    City* city = context->get_city();
+    if(!city)
+        throw std::runtime_error("City not created!");
+    city->save_city_to_file(ofs);
+    manager->save_residents_to_file(ofs);
 }
 
 void Simulation::load_simulation_from_file(std::ifstream& ifs){
-    if (!history.empty()) {
-        history.clear();
-    }
-    std::string line;
     CityContext* context = CityContext::get_instance();
-    int size;
-    ifs>>size;
-    
-    for(int i = 0; i < size; i++){
-            City* city = new City(ifs);
-            context->set_city(city);
-            history.push_back(*city);
-    }
+    context->set_city(new City(ifs));
+    City* city = context->get_city();
+    manager->load_residents_from_file(city, ifs);
+}
+
+void Simulation::generate_city(int width, int height)
+{
+    CityContext* cityContext = CityContext::get_instance();
+    City* city = new City(width, height);
+    manager->generate_random_residents(city, date.get_day());
+    cityContext->set_city(city);
+}
+
+const std::string Simulation::get_date() const
+{
+    return date.get_current_date();
 }

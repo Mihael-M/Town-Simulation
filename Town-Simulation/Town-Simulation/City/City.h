@@ -2,7 +2,7 @@
 #define City_h
 #include <vector>
 #include "Building.h"
-
+#include "Coordinates.h"
 
 class City{
 public:
@@ -17,9 +17,9 @@ public:
     
     City(std::ifstream& ifs);
     
-    void add_building(int x, int y,Building* building);
+    void add_building(const Coordinates& coordinates,Building* building);
     
-    Building* get_building_at(int x, int y);
+    Building* get_building_at(const Coordinates& coordinates);
     
     void save_city_to_file(std::ofstream& ofs) const;
     

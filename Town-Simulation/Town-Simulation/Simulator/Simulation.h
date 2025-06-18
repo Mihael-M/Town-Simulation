@@ -3,11 +3,12 @@
 
 #include "City.h"
 #include "ResidentManager.h"
+#include "Date.h"
 
 class Simulation {
 public:
     
-    Simulation(int currentDay, ResidentManager* manager);
+    Simulation(ResidentManager* manager);
     
     int simulate_day();
     
@@ -17,23 +18,29 @@ public:
     
     void print_status(std::ostream& os) const;
 
-    int get_current_day() const;
+    unsigned get_current_day() const;
+    
+    const std::string get_date() const;
     
     void save_simulation_to_file(std::ofstream& ofs) const;
 
     void load_simulation_from_file(std::ifstream& ifs);
+    
+    void generate_city(int width, int height);
+    
 private:
-    bool is_new_month();
+    void back_steps(int n);
     
-    void update_day();
+    bool check_to_remove(std::vector<ResidentEditor>& residents, size_t index) const;
     
+    bool check_to_stop()const;
     
-    
+    bool are_in_the_same_month() const;
     ResidentManager* manager;
     
-    std::vector<City> history;
+    Date date;
     
-    int currentDay;
+    Date initial_date;
     
 };
 

@@ -17,9 +17,11 @@ private:
     const BuildingCreator* get_creator(BuildingType type) const;
 
 private:
+    void delete_creators();
+    
     BuildingFactory() : count(0) {}
     
-    ~BuildingFactory() = default;
+    ~BuildingFactory();
     
     BuildingFactory(const BuildingFactory& other) = delete;
     
@@ -29,8 +31,6 @@ private:
     static BuildingFactory* theBuildingFactory;
     const BuildingCreator* creators[Constants::MAX_NUMBER_TYPES];
     int count;
-    
-    
 };
 
 

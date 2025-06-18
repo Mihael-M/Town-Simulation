@@ -4,12 +4,8 @@ SimulationApp* SimulationApp::theSimulation = nullptr;
 
 SimulationApp::SimulationApp() : manager(new ResidentManager()) , processor(new CommandProcessor())
 {
-    
-    std::time_t now = std::time(nullptr);
-    std::tm* localTime = std::localtime(&now);
-    int currentDay = localTime->tm_mday;
 
-    sim = new Simulation(currentDay, manager);
+    sim = new Simulation(manager);
     registry = new CommandRegistry(sim, manager);
     registry->register_all_commands(*processor);
 }

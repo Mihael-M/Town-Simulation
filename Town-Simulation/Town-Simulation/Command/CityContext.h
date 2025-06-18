@@ -15,7 +15,10 @@ public:
     bool city_exists() const;
     
 private:
+    void free_city();
+    
     CityContext() = default;
+    
     static City* theCity;
 };
 
