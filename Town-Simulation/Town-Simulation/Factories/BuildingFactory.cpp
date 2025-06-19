@@ -50,5 +50,5 @@ void BuildingFactory::delete_creators()
 BuildingFactory::~BuildingFactory()
 {
     delete_creators();
-    //TODO: check if i have to delete the instance of the factory manually?
+    delete theBuildingFactory;
 }

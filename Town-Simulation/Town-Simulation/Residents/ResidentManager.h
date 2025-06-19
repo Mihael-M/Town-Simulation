@@ -34,6 +34,8 @@ public:
     
     void forward(bool isFirstDayOfMonth, int currentDay, City* city, size_t index);
     
+    size_t size() const;
+    
 private:
     
     void remove(unsigned currentDay, const std::string& name);

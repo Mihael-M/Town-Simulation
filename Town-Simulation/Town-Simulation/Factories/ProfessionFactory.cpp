@@ -41,3 +41,18 @@ const ProfessionCreator* ProfessionFactory::get_creator(const std::string& type)
     }
     return nullptr;
 }
+
+
+void ProfessionFactory::delete_creators()
+{
+    for(int i = 0; i < count; i++)
+    {
+        delete creators[i];
+    }
+}
+
+ProfessionFactory::~ProfessionFactory()
+{
+    delete_creators();
+    delete theProfessionFactory;
+}

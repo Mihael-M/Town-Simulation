@@ -36,6 +36,7 @@ private:
     bool check_to_stop()const;
     
     bool are_in_the_same_month() const;
+    
     ResidentManager* manager;
     
     Date date;

@@ -11,9 +11,9 @@ int Teacher::get_salary() const{
 }
 
 void Teacher::monthly_update(Resident& resident){
-    auto resident_info = resident.get_resident_info();
+    resident_info* info = resident.get_resident_info();
     
-    resident_info->set_happiness(std::min(100, resident_info->get_happiness()));
+    info->set_happiness(std::min(100, info->get_happiness()));
 }
 
 Profession* Teacher::clone() const{

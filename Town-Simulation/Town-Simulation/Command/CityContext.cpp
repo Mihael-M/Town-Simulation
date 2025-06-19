@@ -30,3 +30,8 @@ void CityContext::free_city()
 {
     delete theCity;
 }
+
+CityContext::~CityContext()
+{
+    free_city();
+}

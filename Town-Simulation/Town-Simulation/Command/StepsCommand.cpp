@@ -9,10 +9,12 @@ void StepsCommand::execute(const std::vector<std::string>& args)
 {
     int steps = std::atoi(args[0].c_str());
     try{
-        std::cout<< sim->simulate_days(steps) << std::endl;
+        int removed = sim->simulate_days(steps);
+        if(removed != -1)
+            std::cout<< " " << removed << std::endl;
     }
     catch(std::exception& ex)
     {
-        std::cout<<"Error steps from: " << ex.what() << std::endl;
+        std::cout<<"Error from steps command: " << ex.what() << std::endl;
     }
 }

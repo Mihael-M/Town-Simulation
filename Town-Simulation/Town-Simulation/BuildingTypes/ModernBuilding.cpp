@@ -5,7 +5,7 @@
 ModernBuilding::ModernBuilding(Location* loc) : Building(BuildingType::Modern, loc)  {}
 
 double ModernBuilding::calculate_rent() const {
-    auto base_rent = get_base_rent();
+    double base_rent = get_base_rent();
     return base_rent *= loc->rent_multiplier();
 }
 

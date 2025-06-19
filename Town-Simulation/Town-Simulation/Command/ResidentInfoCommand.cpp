@@ -10,7 +10,10 @@ void ResidentInfoCommand::execute(const std::vector<std::string>& args)
 {
         int x = std::atoi(args[0].c_str());
         int y = std::atoi(args[1].c_str());
-        
+    
+    if(!is_number(args[0]) || !is_number(args[1]))
+        throw std::invalid_argument("Invalid symbols.");
+    
     try{
         Coordinates coords(x, y);
         
@@ -21,5 +24,9 @@ void ResidentInfoCommand::execute(const std::vector<std::string>& args)
     catch(std::invalid_argument& err)
     {
         std::cout<<"Error getting resident info: " << err.what() << std::endl;
+    }
+    catch(...)
+    {
+        std::cout<<"Error getting resident info!" << std::endl;
     }
 }

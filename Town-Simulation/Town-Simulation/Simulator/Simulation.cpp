@@ -105,7 +105,7 @@ int Simulation::simulate_days(int n)
         return peopleRemoved;
     } else {
         back_steps(n);
-        return 0;
+        return -1;
     }
 }
 
@@ -115,9 +115,9 @@ void Simulation::print_status(std::ostream& os) const {
     if(!city)
         throw std::runtime_error("City not created!");
     
-    for (int i = 0; i < city->get_height(); i++) {
-        for (int j = 0; j < city->get_width(); j++) {
-            Coordinates coords(j, i);
+    for (int i = 0; i < city->get_width(); i++) {
+        for (int j = 0; j < city->get_height(); j++) {
+            Coordinates coords(i, j);
             Building* building = city->get_building_at(coords);
             os<<"Location " << i << " " << j << ": " << std::endl;
             building->print_building(os);
@@ -152,12 +152,14 @@ void Simulation::load_simulation_from_file(std::ifstream& ifs){
 void Simulation::generate_city(int width, int height)
 {
     CityContext* cityContext = CityContext::get_instance();
-    City* city = new City(width, height);
+    cityContext->set_city(new City(width, height));
+    City* city = cityContext->get_city();
     manager->generate_random_residents(city, date.get_day());
-    cityContext->set_city(city);
 }
 
 const std::string Simulation::get_date() const
 {
     return date.get_current_date();
 }
+
+

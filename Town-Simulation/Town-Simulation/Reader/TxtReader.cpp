@@ -11,7 +11,7 @@ void TxtReader::read(Simulation* sim)
 {
     std::ifstream file(fileName);
     if (!file.is_open())
-        throw std::runtime_error("File could not open!");
+        throw std::runtime_error("File could not be foundgg!");
 
     sim->load_simulation_from_file(file);
     

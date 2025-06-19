@@ -5,7 +5,7 @@
 PanelBlockBuilding::PanelBlockBuilding(Location* loc) : Building(BuildingType::PanelBlock,loc)  {}
 
 double PanelBlockBuilding::calculate_rent() const {
-    auto base_rent = get_base_rent();
+    double base_rent = get_base_rent();
     return base_rent *= loc->rent_multiplier();
 }
 

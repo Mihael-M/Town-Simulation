@@ -6,7 +6,7 @@ DormitoryBuilding::DormitoryBuilding(Location* loc) : Building(BuildingType::Dor
 
 double DormitoryBuilding::calculate_rent() const {
     
-    auto base_rent = get_base_rent();
+    double base_rent = get_base_rent();
     return base_rent *= loc->rent_multiplier();
 }
 

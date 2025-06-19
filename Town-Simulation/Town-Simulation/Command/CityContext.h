@@ -14,6 +14,8 @@ public:
     
     bool city_exists() const;
     
+    ~CityContext();
+    
 private:
     void free_city();
     

@@ -18,27 +18,52 @@ SimulationApp* SimulationApp::get_instance()
 
 void SimulationApp::menu() const
 {
-    std::cout << R"(Welcome to the City Simulation!
+    std::cout << R"(
 
-Available commands:
+ 
+                    ░█████╗░██╗████████╗██╗░░░██╗  
+                    ██╔══██╗██║╚══██╔══╝╚██╗░██╔╝ 
+                    ██║░░╚═╝██║░░░██║░░░░╚████╔╝░  
+                    ██║░░██╗██║░░░██║░░░░░╚██╔╝░░  
+                    ╚█████╔╝██║░░░██║░░░░░░██║░░░  
+                    ░╚════╝░╚═╝░░░╚═╝░░░░░░╚═╝░░░  
 
-Create a city:
+░██████╗██╗███╗░░░███╗██╗░░░██╗██╗░░░░░░█████╗░████████╗██╗░█████╗░███╗░░██╗
+██╔════╝██║████╗░████║██║░░░██║██║░░░░░██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║
+╚█████╗░██║██╔████╔██║██║░░░██║██║░░░░░███████║░░░██║░░░██║██║░░██║██╔██╗██║
+░╚═══██╗██║██║╚██╔╝██║██║░░░██║██║░░░░░██╔══██║░░░██║░░░██║██║░░██║██║╚████║
+██████╔╝██║██║░╚═╝░██║╚██████╔╝███████╗██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║
+╚═════╝░╚═╝╚═╝░░░░░╚═╝░╚═════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝
+
+
+                        Available commands:
+
+
+
+                          Create a city:
   >> generate <n> <m>
     Creates a city with dimensions n x m with randomly generated buildings and residents.
     Outputs the date the simulation was created.
     Output: <current simulation date>
 
-Add people:
+
+                             Add people:
+
   >> add <n> <m> <name> <job> <happiness> <money> <life>
     Adds a person at location (n, m) with the given characteristics.
     Output: Result of the operation (successful or unsuccessful).
 
-Remove people:
+
+
+                            Remove people:
+
   >> remove <n> <m> <name>
     Removes a person named <name> from location (n, m).
     Output: Result of the operation (successful or unsuccessful).
 
-Simulation steps:
+
+                           Simulation steps:
+
   >> step
     Advances the simulation by 1 day.
     Output: Number of people with 0 happiness, 0 life, and 0 money (removed from the simulation).
@@ -47,7 +72,9 @@ Simulation steps:
     Advances (or rewinds) the simulation by n days.
     Output: Number of people with 0 happiness, 0 life, and 0 money (removed from the simulation).
 
-Simulation information:
+
+                         Simulation information:
+
   >> info
     Displays full structured information about the entire simulation.
 
@@ -57,14 +84,17 @@ Simulation information:
   >> info <x> <y> <name>
     Detailed history and characteristics of a person named <name> at location (x, y).
 
-Serialization:
+
+                              Serialization:
+
   >> save <name>
     Saves the current state of the simulation to a file named <name>.
 
   >> load <name>
     Loads a simulation from a file named <name>.
 
-Exit the program:
+                             Exit the program:
+
   >> End
     Exits the simulation.
 

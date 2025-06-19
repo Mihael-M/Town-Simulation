@@ -23,7 +23,9 @@ private:
 private:
     ProfessionFactory() : count(0) {}
     
-    ~ProfessionFactory() = default;
+    void delete_creators();
+    
+    ~ProfessionFactory();
     
     ProfessionFactory(const ProfessionFactory& other) = delete;
     
@@ -31,6 +33,7 @@ private:
     
 private:
     static ProfessionFactory* theProfessionFactory;
+    
     const ProfessionCreator* creators[Constants::MAX_NUMBER_TYPES];
     int count;
     

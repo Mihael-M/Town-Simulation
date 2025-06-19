@@ -42,13 +42,15 @@ void ResidentManager::remove(unsigned currentDay, const std::string& name)
 
 void ResidentManager::generate_random_residents(City* city, unsigned currentDay)
 {
+    if(!residents.empty())
+        residents.clear();
     for(int y = 0; y < city->get_height(); y++)
     {
         for(int x = 0; x < city->get_width(); x++)
         {
             Coordinates coords(x, y);
             Building* building = city->get_building_at(coords);
-            int numberOfResidents = std::rand() % building->get_capacity() - 1;
+            int numberOfResidents = 1 + (std::rand() % building->get_capacity());
             for(int i = 0; i < numberOfResidents; i++)
             {
                 
@@ -134,3 +136,9 @@ void ResidentManager::forward(bool isFirstDayOfMonth, int currentDay, City* city
         residentEditor.go_forward(isFirstDayOfMonth, currentDay, building);
     }
 }
+
+size_t ResidentManager::size() const
+{
+    return residents.size();
+}
+

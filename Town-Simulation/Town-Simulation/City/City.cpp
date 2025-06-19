@@ -11,7 +11,7 @@
 
 City::City(int width, int height) : width(width),height(height)
 {
-    grid.resize(height,std::vector<Building*>(width,nullptr));
+    grid.resize(width, std::vector<Building*>(height, nullptr));
     generate_random_buildings();
 }
 
@@ -29,14 +29,14 @@ City::City(std::ifstream& ifs)
     if (!(ifs >> width >> height)) {
         throw std::runtime_error("Failed to read city dimensions");
     }
-    grid.resize(height, std::vector<Building*>(width, nullptr));
+    grid.resize(width, std::vector<Building*>(height, nullptr));
 
     BuildingFactory* factory = BuildingFactory::get_factory();
     LocationFactory locFactory(width, height);
     std::string line;
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
-                if (grid[y][x] == nullptr) {
+                if (grid[x][y] == nullptr) {
                     std::getline(ifs, line);
                     if (line.empty()) std::getline(ifs, line);
                     
@@ -51,7 +51,7 @@ City::City(std::ifstream& ifs)
                     int capacity;
                     ifs >>capacity;
                     building->load_residents_from_file(ifs,capacity);
-                    grid[y][x] = building;
+                    grid[x][y] = building;
                 }
         }
     }
@@ -80,9 +80,9 @@ Location* City::generate_random_location(int x, int y) const
 void City::generate_random_buildings()
 {
     BuildingFactory* factory = BuildingFactory::get_factory();
-    for(int y = 0; y < height; y++)
+    for(int x = 0; x < width; x++)
     {
-        for(int x = 0; x < width; x++)
+        for(int y = 0; y < height; y++)
         {
             BuildingType buildingType = (BuildingType)(std::rand() % Constants::BUILDING_TYPES);
             
@@ -97,32 +97,38 @@ void City::generate_random_buildings()
 
 
 
-void City::add_building(const Coordinates& coordinates,Building *building)
+void City::add_building(const Coordinates& coordinates, Building* building)
 {
-    if(coordinates.get_x() < 0 || coordinates.get_y() < 0 || coordinates.get_x() >= width || coordinates.get_y() >= height)
+    int x = coordinates.get_x();
+    int y = coordinates.get_y();
+
+    if (x < 0 || y < 0 || x >= width || y >= height)
     {
         throw std::invalid_argument("Wrong building information, can't be added!");
     }
-    
-    grid[coordinates.get_x()][coordinates.get_y()] = building;
+
+    grid[x][y] = building;
 }
 
 void City::free_dynamic() {
-    for(int i = 0; i < width; i++)
+    for(int x = 0; x < width; x++)
     {
-        for(int j = 0; j < height; j++)
+        for(int y = 0; y < height; y++)
         {
-            delete grid[i][j];
+            delete grid[x][y];
         }
     }
 }
 
 Building* City::get_building_at(const Coordinates& corrdinates)
 {
-    if(corrdinates.get_x() < 0 || corrdinates.get_y() < 0 || corrdinates.get_x() > width || corrdinates.get_y() > height || grid[corrdinates.get_x()][corrdinates.get_y()] == nullptr)
+    int x = corrdinates.get_x();
+    int y = corrdinates.get_y();
+
+    if (x < 0 || y < 0 || x >= width || y >= height || grid[x][y] == nullptr)
         throw std::invalid_argument("Invalid position for building.");
-    
-    return grid[corrdinates.get_x()][corrdinates.get_y()];
+
+    return grid[x][y];
 }
 
 int City::get_width() const
@@ -144,12 +150,12 @@ City::~City(){
 
 void City::copy_dynamic(const City& other)
 {
-    grid.resize(other.height, std::vector<Building*>(other.width, nullptr));
+    grid.resize(other.width, std::vector<Building*>(other.height, nullptr));
 
-    for (int y = 0; y < other.height; y++) {
-        for (int x = 0; x < other.width; x++) {
-            if (other.grid[y][x]) {
-                grid[y][x] = other.grid[y][x]->clone();
+    for (int x = 0; x < other.width; x++) {
+        for (int y = 0; y < other.height; y++) {
+            if (other.grid[x][y]) {
+                grid[x][y] = other.grid[x][y]->clone();
             }
         }
     }
@@ -158,9 +164,9 @@ void City::copy_dynamic(const City& other)
 void City::save_city_to_file(std::ofstream& ofs) const
 {
     ofs<<width<<" "<<height<<std::endl;
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            grid[y][x]->save_building_to_file(ofs);
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            grid[x][y]->save_building_to_file(ofs);
         }
     }
 
