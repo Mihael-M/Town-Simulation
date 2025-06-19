@@ -5,8 +5,6 @@
 #include "City.h"
 #include "BuildingRegistrations.h"
 
-
-#include "BuildingFactory.h"
 #include "LocationFactory.h"
 
 City::City(int width, int height) : width(width),height(height)

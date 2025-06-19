@@ -1,6 +1,8 @@
 #ifndef Utils_h
 #define Utils_h
 
+#include <string>
+
 static bool is_number(const std::string& s) {
     if (s.empty()) return false;
     size_t start = 0;

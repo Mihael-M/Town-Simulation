@@ -4,8 +4,8 @@
 #include <cstdlib>
 #include <fstream>
 
-#include "Profession.h"
 #include "Coordinates.h"
+#include "ProfessionFactory.h"
 
 class Building;
 

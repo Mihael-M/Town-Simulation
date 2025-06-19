@@ -2,7 +2,6 @@
 #include "TxtReader.h"
 #include "CityContext.h"
 #include "LocationFactory.h"
-#include "BuildingFactory.h"
 #include <fstream>
 
 TxtReader::TxtReader(const std::string& fileName) : Reader(fileName) {}

@@ -54,5 +54,10 @@ void ProfessionFactory::delete_creators()
 ProfessionFactory::~ProfessionFactory()
 {
     delete_creators();
+    
+}
+void ProfessionFactory::destroy_instance()
+{
     delete theProfessionFactory;
+    theProfessionFactory = nullptr;
 }

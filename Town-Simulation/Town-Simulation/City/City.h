@@ -1,7 +1,7 @@
 #ifndef City_h
 #define City_h
 #include <vector>
-#include "Building.h"
+#include "BuildingFactory.h"
 #include "Coordinates.h"
 
 class City{

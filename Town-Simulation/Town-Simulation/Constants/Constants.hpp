@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <string>
 
 namespace Constants {
 static constexpr int MAX_NUMBER_TYPES = 10;
@@ -53,7 +54,10 @@ static std::vector<std::string> professionNames = {
 };
 
 static std::vector<std::string> names = {
-    "Bobby", "Kevin", "Olq", "Petq", "Kosta", "Trump", "Viktor", "Elena", "Zhozko", "Icaka" , "Ivan", "Georgi", "Aleks" , "Dimitur" , "Stanislav", "Marti"
+    "Bobby", "Kevin", "Olq", "Petq", "Kosta", "Trump", "Viktor", "Elena", "Zhozko", "Icaka" , "Ivan", "Georgi", "Aleks" , "Dimitur" , "Stanislav", "Marti",
+    "Nikolay", "Hristo", "Plamen", "Stefan", "Radoslav", "Lyubomir", "Todor", "Milen", "Daniel", "Rumen", "Bozhidar", "Kristian", "Tsvetan", "Asen", "Emil", "Valentin",
+    "Yordan", "Petar", "Angel", "Veselin", "Borislav", "Zhivko", "Ognyan", "Krasimir", "Dimitar", "Tihomir", "Mihail", "Dobromir", "Venelin", "Zdravko", "Anton", "Luben",
+    "Simeon", "Blagovest", "Traycho", "Stoyan", "Velislav", "Vladimir", "Ilian", "Kiril", "Metodi", "Radostin", "Zharko", "Nayden", "Toma", "Boyan", "Pavel", "Lachezar"
 };
 }
 

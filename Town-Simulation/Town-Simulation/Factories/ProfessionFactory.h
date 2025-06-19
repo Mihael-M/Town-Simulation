@@ -15,6 +15,7 @@ public:
     
     Profession* create_profession(const std::string& type);
     
+    static void destroy_instance();
 private:
     
     const ProfessionCreator* get_creator(const std::string& type) const;
@@ -32,6 +33,7 @@ private:
     ProfessionFactory& operator=(const ProfessionFactory& other) = delete;
     
 private:
+    
     static ProfessionFactory* theProfessionFactory;
     
     const ProfessionCreator* creators[Constants::MAX_NUMBER_TYPES];

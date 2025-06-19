@@ -13,6 +13,8 @@ public:
 
     Building* create_building(BuildingType type, Location* loc);
 
+    static void destroy_instance();
+    
 private:
     const BuildingCreator* get_creator(BuildingType type) const;
 

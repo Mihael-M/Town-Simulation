@@ -13,8 +13,12 @@ public:
     
     SimulationApp& operator=(const SimulationApp&) = delete;
     
+    void shutdown();
+    
     ~SimulationApp();
 private:
+    static void destroy_instance();
+    
     static SimulationApp* theSimulation;
     
     SimulationApp();

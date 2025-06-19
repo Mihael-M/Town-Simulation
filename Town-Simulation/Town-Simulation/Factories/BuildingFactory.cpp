@@ -50,5 +50,11 @@ void BuildingFactory::delete_creators()
 BuildingFactory::~BuildingFactory()
 {
     delete_creators();
+   
+}
+
+void BuildingFactory::destroy_instance()
+{
     delete theBuildingFactory;
+    theBuildingFactory = nullptr;
 }

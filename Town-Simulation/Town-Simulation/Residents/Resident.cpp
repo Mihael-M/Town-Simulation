@@ -3,7 +3,7 @@
 #include "Building.h"
 #include <iostream>
 #include <stdexcept>
-#include "ProfessionFactory.h"
+
 
 resident_info::resident_info(std::ifstream& ifs)
 {

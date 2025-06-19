@@ -144,3 +144,15 @@ SimulationApp::~SimulationApp()
 {
     free_dynamic();
 }
+
+void SimulationApp::destroy_instance()
+{
+    delete theSimulation;
+    theSimulation = nullptr;
+}
+
+void SimulationApp::shutdown() {
+    BuildingFactory::destroy_instance();
+    ProfessionFactory::destroy_instance();
+    destroy_instance();
+}
