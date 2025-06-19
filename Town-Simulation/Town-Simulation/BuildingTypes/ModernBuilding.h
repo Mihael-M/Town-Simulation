@@ -1,4 +1,3 @@
-#pragma once
 #ifndef ModernBuilding_h
 #define ModernBuilding_h
 #include "Building.h"

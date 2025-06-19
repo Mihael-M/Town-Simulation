@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CentralLocation_h
+#define CentralLocation_h
 #include "Location.h"
 
 class CentralLocation : public Location{
@@ -8,3 +9,5 @@ public:
     virtual Location* clone() const override;
     virtual LocationType get_type() const override;
 };
+
+#endif /* CentralLocation_h */

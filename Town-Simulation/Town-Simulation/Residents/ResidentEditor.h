@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ResidentEditor_h
+#define ResidentEditor_h
 #include "Resident.h"
 
 class ResidentEditor{
@@ -41,3 +42,4 @@ private:
     
     Resident* resident;
 };
+#endif /* ResidentEditor_h */

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PeripheralLocation_h
+#define PeripheralLocation_h
+
 #include "Location.h"
 
 
@@ -9,3 +11,4 @@ public:
     virtual Location* clone() const override;
     virtual LocationType get_type() const override;
 };
+#endif /* PeripheralLocation_h */

@@ -1,4 +1,3 @@
-#pragma once
 #ifndef DormitoryBuilding_h
 #define DormitoryBuilding_h
 #include "Building.h"

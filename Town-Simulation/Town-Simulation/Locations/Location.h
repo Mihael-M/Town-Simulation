@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Location_h
+#define Location_h
 #include "Constants.hpp"
 #include "LocationType.h"
 
@@ -9,3 +10,5 @@ public:
     virtual LocationType get_type() const = 0;
     virtual Location* clone() const = 0;
 };
+
+#endif /* Location_h */

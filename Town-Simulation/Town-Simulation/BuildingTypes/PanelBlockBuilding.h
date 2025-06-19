@@ -1,4 +1,3 @@
-#pragma once
 #ifndef PanelBlockBuilding_h
 #define PanelBlockBuilding_h
 #include "Building.h"

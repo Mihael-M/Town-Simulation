@@ -1,7 +1,7 @@
 #ifndef CommandRegistry_h
 #define CommandRegistry_h
 
-#pragma once
+
 #include "CommandProcessor.h"
 #include "Simulation.h"
 
