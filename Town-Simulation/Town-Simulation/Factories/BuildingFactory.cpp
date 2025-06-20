@@ -41,7 +41,7 @@ const BuildingCreator* BuildingFactory::get_creator(BuildingType type) const
 
 void BuildingFactory::delete_creators()
 {
-    for(int i = 0;i < Constants::MAX_NUMBER_TYPES;i++)
+    for(int i = 0;i < count;i++)
     {
         delete creators[i];
     }

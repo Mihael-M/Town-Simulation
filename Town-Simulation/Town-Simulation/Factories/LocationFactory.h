@@ -7,10 +7,10 @@
 class LocationFactory{
   
 public:
+    
     LocationFactory(int width,int height);
     
     Location* create_location(int x, int y);
-    
     
 private:
     bool is_central(int x, int y) const;
@@ -19,17 +19,8 @@ private:
     
     LocationType get_location_type(int x, int y) const;
     
-    
-    
-    LocationFactory(const LocationFactory& other) = delete;
-    
-    LocationFactory& operator=(const LocationFactory& other) = delete;
-    
-    
-    
 private:
     int width;
-    int height;
     
 };
 

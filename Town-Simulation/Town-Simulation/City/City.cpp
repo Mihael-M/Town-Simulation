@@ -69,7 +69,7 @@ City& City::operator=(const City& other)
 
 Location* City::generate_random_location(int x, int y) const
 {
-    LocationFactory factory = LocationFactory(width, height);
+    LocationFactory factory(width, height);
     
     return factory.create_location(x, y);
 }

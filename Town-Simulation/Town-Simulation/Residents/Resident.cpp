@@ -121,8 +121,8 @@ void Resident::copy_dynamic(const Resident& other)
 
 
 void Resident::pay_rent(Building* building){
-    int curr_balance = info->get_money();
-    int rent = building->calculate_rent();
+    double curr_balance = info->get_money();
+    double rent = building->calculate_rent();
     
     info->set_money(curr_balance -= rent);
     
@@ -136,7 +136,7 @@ const std::string& Resident::get_name() const {
 }
 
 void Resident::pay_for_food(){
-    int curr_balance = info->get_money();
+    double curr_balance = info->get_money();
     
     info->set_money(curr_balance -= Constants::FOOD_EXPENSES);
     if(curr_balance < 0)
