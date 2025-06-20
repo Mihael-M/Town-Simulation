@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AddResidentCommand.cpp" />
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="BuildingCreator.cpp" />
+    <ClCompile Include="BuildingFactory.cpp" />
+    <ClCompile Include="BuildingInfoCommand.cpp" />
+    <ClCompile Include="CentralLocation.cpp" />
+    <ClCompile Include="City.cpp" />
+    <ClCompile Include="CityContext.cpp" />
+    <ClCompile Include="CommandProcessor.cpp" />
+    <ClCompile Include="CommandRegistry.cpp" />
+    <ClCompile Include="Coordinates.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="DormitoryBuilding.cpp" />
+    <ClCompile Include="DormitoryBuildingCreator.cpp" />
+    <ClCompile Include="GenerateCommand.cpp" />
+    <ClCompile Include="InfoCommand.cpp" />
+    <ClCompile Include="LoadCommand.cpp" />
+    <ClCompile Include="LocationFactory.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Miner.cpp" />
+    <ClCompile Include="MinerCreator.cpp" />
+    <ClCompile Include="ModernBuilding.cpp" />
+    <ClCompile Include="ModernBuildingCreator.cpp" />
+    <ClCompile Include="PanelBlockBuilding.cpp" />
+    <ClCompile Include="PanelBlockBuildingCreator.cpp" />
+    <ClCompile Include="PeripheralLocation.cpp" />
+    <ClCompile Include="Profession.cpp" />
+    <ClCompile Include="ProfessionCreator.cpp" />
+    <ClCompile Include="ProfessionFactory.cpp" />
+    <ClCompile Include="Programmer.cpp" />
+    <ClCompile Include="ProgrammerCreator.cpp" />
+    <ClCompile Include="Reader.cpp" />
+    <ClCompile Include="RemoveResidentCommand.cpp" />
+    <ClCompile Include="Resident.cpp" />
+    <ClCompile Include="ResidentEditor.cpp" />
+    <ClCompile Include="ResidentInfoCommand.cpp" />
+    <ClCompile Include="ResidentManager.cpp" />
+    <ClCompile Include="SaveCommand.cpp" />
+    <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="SimulationApp.cpp" />
+    <ClCompile Include="StepCommand.cpp" />
+    <ClCompile Include="StepsCommand.cpp" />
+    <ClCompile Include="Teacher.cpp" />
+    <ClCompile Include="TeacherCreator.cpp" />
+    <ClCompile Include="TxtReader.cpp" />
+    <ClCompile Include="TxtWriter.cpp" />
+    <ClCompile Include="Unemployed.cpp" />
+    <ClCompile Include="UnemployedCreator.cpp" />
+    <ClCompile Include="Writer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AddResidentCommand.h" />
+    <ClInclude Include="AutoRegisterDormitory.hpp" />
+    <ClInclude Include="AutoRegisterMiner.hpp" />
+    <ClInclude Include="AutoRegisterModern.hpp" />
+    <ClInclude Include="AutoRegisterPanelBlock.hpp" />
+    <ClInclude Include="AutoRegisterProgrammer.hpp" />
+    <ClInclude Include="AutoRegisterTeacher.hpp" />
+    <ClInclude Include="AutoRegisterUnemployed.hpp" />
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="BuildingCreator.h" />
+    <ClInclude Include="BuildingFactory.h" />
+    <ClInclude Include="BuildingInfoCommand.h" />
+    <ClInclude Include="BuildingRegistrations.h" />
+    <ClInclude Include="BuildingType.h" />
+    <ClInclude Include="CentralLocation.h" />
+    <ClInclude Include="City.h" />
+    <ClInclude Include="CityContext.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandProcessor.h" />
+    <ClInclude Include="CommandRegistry.h" />
+    <ClInclude Include="Constants.hpp" />
+    <ClInclude Include="Coordinates.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="DormitoryBuilding.h" />
+    <ClInclude Include="DormitoryBuildingCreator.h" />
+    <ClInclude Include="GenerateCommand.h" />
+    <ClInclude Include="InfoCommand.h" />
+    <ClInclude Include="LoadCommand.h" />
+    <ClInclude Include="Location.h" />
+    <ClInclude Include="LocationFactory.h" />
+    <ClInclude Include="LocationType.h" />
+    <ClInclude Include="Miner.h" />
+    <ClInclude Include="MinerCreator.h" />
+    <ClInclude Include="ModernBuilding.h" />
+    <ClInclude Include="ModernBuildingCreator.h" />
+    <ClInclude Include="PanelBlockBuilding.h" />
+    <ClInclude Include="PanelBlockBuildingCreator.h" />
+    <ClInclude Include="PeripheralLocation.h" />
+    <ClInclude Include="Profession.h" />
+    <ClInclude Include="ProfessionCreator.h" />
+    <ClInclude Include="ProfessionFactory.h" />
+    <ClInclude Include="Programmer.h" />
+    <ClInclude Include="ProgrammerCreator.h" />
+    <ClInclude Include="Reader.h" />
+    <ClInclude Include="RemoveResidentCommand.h" />
+    <ClInclude Include="Resident.h" />
+    <ClInclude Include="ResidentEditor.h" />
+    <ClInclude Include="ResidentInfoCommand.h" />
+    <ClInclude Include="ResidentManager.h" />
+    <ClInclude Include="SaveCommand.h" />
+    <ClInclude Include="Simulation.h" />
+    <ClInclude Include="SimulationApp.h" />
+    <ClInclude Include="StepCommand.h" />
+    <ClInclude Include="StepsCommand.h" />
+    <ClInclude Include="Teacher.h" />
+    <ClInclude Include="TeacherCreator.h" />
+    <ClInclude Include="TxtReader.h" />
+    <ClInclude Include="TxtWriter.h" />
+    <ClInclude Include="Unemployed.h" />
+    <ClInclude Include="UnemployedCreator.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Writer.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{a5c16d4b-dbfd-47f9-b816-a1c6756bbdfa}</ProjectGuid>
+    <RootNamespace>TownSimulation</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
