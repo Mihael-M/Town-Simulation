@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['read_0',['read',['../class_reader.html#aa5a38a5ce5a97f5a7f422f89720a3fd6',1,'Reader::read()'],['../class_txt_reader.html#a1b9df41830ce3be429b42174a55d8150',1,'TxtReader::read()']]],
+  ['reader_1',['Reader',['../class_reader.html#a8de9bc1668ab898b0e42df09e9bcd4a6',1,'Reader']]],
+  ['receive_5fsalary_2',['receive_salary',['../class_resident.html#a8317add32ed85d5245c20e4c810356c7',1,'Resident']]],
+  ['register_5fall_5fcommands_3',['register_all_commands',['../class_command_registry.html#a34185356b09a505df8e25ba78f082996',1,'CommandRegistry']]],
+  ['register_5fbuilding_4',['register_building',['../class_building_factory.html#ae5103b62842342bde1e4bd3bee11ab38',1,'BuildingFactory']]],
+  ['register_5fcommand_5',['register_command',['../class_command_processor.html#a8af1daa7ccf0cf3f9cd304204a4ae02c',1,'CommandProcessor']]],
+  ['register_5fprofession_6',['register_profession',['../class_profession_factory.html#a60399e23137d77b9dcbab75b65d620f1',1,'ProfessionFactory']]],
+  ['remove_5fresident_7',['remove_resident',['../class_building.html#a228598e671a3e1ce64dbe70c45149709',1,'Building::remove_resident()'],['../class_resident_manager.html#a60f8da07bf58036cd7e377865ccf0526',1,'ResidentManager::remove_resident(City *city, const std::string &amp;name, unsigned currentDay, size_t index)'],['../class_resident_manager.html#a37dc55b4f3216aee0439d2112c70fd37',1,'ResidentManager::remove_resident(Building *building, const std::string &amp;name, unsigned currentDay)'],['../class_resident_manager.html#a76bf3f5c4253c286859bb8648144a498',1,'ResidentManager::remove_resident(size_t index, City *city, const std::string &amp;name)']]],
+  ['removeresidentcommand_8',['RemoveResidentCommand',['../class_remove_resident_command.html#a15e67584b06b518272bb3ffa49e8bebb',1,'RemoveResidentCommand']]],
+  ['rent_5fmultiplier_9',['rent_multiplier',['../class_central_location.html#a3fd91cbe635c2745273c586d49386729',1,'CentralLocation::rent_multiplier()'],['../class_location.html#a5cf25f6e3c66d8e0ac576cffe1c4fb19',1,'Location::rent_multiplier()'],['../class_peripheral_location.html#a2e138e9b8d31bc93546d9f9438df4024',1,'PeripheralLocation::rent_multiplier()']]],
+  ['resident_10',['Resident',['../class_resident.html#ac6d23db3527f4d24389ae65f08607a18',1,'Resident::Resident(resident_info *info=generate_random_resident_info(), const std::string &amp;name=generate_random_name(), Profession *job=generate_random_profession())'],['../class_resident.html#a093aa5c452de9937eed2561ca2afabfc',1,'Resident::Resident(const Resident &amp;other)'],['../class_resident.html#a94653d44a79d4cf5247de2668249488f',1,'Resident::Resident(std::ifstream &amp;is)']]],
+  ['resident_5finfo_11',['resident_info',['../structresident__info.html#ad4d1dabf50fa7fbb4e916e2a0c8a0e3f',1,'resident_info::resident_info(const Coordinates &amp;coordinates=Coordinates(), unsigned born=0, int happiness=generate_random_info(), double money=generate_random_info(), int life_points=generate_random_info())'],['../structresident__info.html#aa4faae071c46364c4a13ffab311972b0',1,'resident_info::resident_info(std::ifstream &amp;ifs)']]],
+  ['residenteditor_12',['ResidentEditor',['../class_resident_editor.html#a30cfbe55c56eff3f38a86a3e28347c90',1,'ResidentEditor::ResidentEditor(Resident *resident)'],['../class_resident_editor.html#aefd41ef7a989a324500205bcac8032ab',1,'ResidentEditor::ResidentEditor(const ResidentEditor &amp;other)'],['../class_resident_editor.html#a0ea21e00b5c72b0bc2dbbc8784143094',1,'ResidentEditor::ResidentEditor(std::ifstream &amp;ifs)']]],
+  ['residentinfocommand_13',['ResidentInfoCommand',['../class_resident_info_command.html#a325def7bbac17c3d530682194ea3cbd8',1,'ResidentInfoCommand']]],
+  ['restore_14',['restore',['../class_resident.html#a0697d735b9099b2d6d3742484490a399',1,'Resident']]],
+  ['run_15',['run',['../class_simulation_app.html#a1b2da134244afc5df56ccdc72d8c98a6',1,'SimulationApp']]]
+];
