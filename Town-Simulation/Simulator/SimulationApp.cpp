@@ -2,23 +2,24 @@
 #include "SimulationApp.h"
 SimulationApp* SimulationApp::theSimulation = nullptr;
 
-SimulationApp::SimulationApp() : manager(new ResidentManager()) , processor(new CommandProcessor())
+SimulationApp::SimulationApp(const Printer* printer) : manager(new ResidentManager()) , processor(new CommandProcessor())
 {
-
+    this->printer = printer;
     sim = new Simulation(manager);
     registry = new CommandRegistry(sim, manager);
     registry->register_all_commands(*processor);
 }
-SimulationApp* SimulationApp::get_instance()
+
+SimulationApp* SimulationApp::get_instance(const Printer* printer)
 {
     if(theSimulation == nullptr)
-        theSimulation = new SimulationApp();
+        theSimulation = new SimulationApp(printer);
     return theSimulation;
 }
 
 void SimulationApp::menu() const
 {
-    std::cout << R"(
+    this->printer->println(R"(
 
  
                     ░█████╗░██╗████████╗██╗░░░██╗  
@@ -98,7 +99,8 @@ void SimulationApp::menu() const
   >> End
     Exits the simulation.
 
-)";
+)");
+    
 }
 
 void SimulationApp::run()
@@ -106,11 +108,12 @@ void SimulationApp::run()
     std::string input;
     menu();
     do{
-        std::cout << "> ";
+        printer->print("> ");
+        
         std::getline(std::cin, input);
         if(input == "End")
         {
-            std::cout << "Exiting simulation. Goodbye!" << std::endl;
+            printer->print("Exiting simulation. Goodbye!");
             break;
         }
         try{
@@ -118,11 +121,11 @@ void SimulationApp::run()
         }
         catch(std::runtime_error& error)
         {
-            std::cout<<error.what()<<std::endl;
+            printer->println(error.what());
         }
-        std::cout<<std::endl;
-        std::cout << "=== Input ===\n";
-        std::cout<<std::endl;
+        
+        printer->println();
+        printer->println("=== Input ===)");
     }
     while(true);
    

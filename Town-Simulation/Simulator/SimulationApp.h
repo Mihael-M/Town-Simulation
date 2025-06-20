@@ -2,10 +2,11 @@
 #define SimulationApp_h
 #include "CommandProcessor.h"
 #include "CommandRegistry.h"
+#include "Printer.h"
 
 class SimulationApp{
 public:
-    static SimulationApp* get_instance();
+    static SimulationApp* get_instance(const Printer* printer);
     
     void run();
     
@@ -21,11 +22,14 @@ private:
     
     static SimulationApp* theSimulation;
     
-    SimulationApp();
+    SimulationApp(const Printer* printer);
     
     void free_dynamic();
     
     void menu() const;
+    
+    
+    const Printer* printer;
     
     ResidentManager* manager;
     
