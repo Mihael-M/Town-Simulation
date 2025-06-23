@@ -21,7 +21,7 @@ private:
     
 private:
     int width;
-    
+    int height;
 };
 
 #endif /* LocationFactory_h */
